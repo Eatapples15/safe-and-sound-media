@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il ritmo che salva · Safe &amp; Sound</title>
+<meta name="description" content="Metronomo per il massaggio cardiaco: 100–120 compressioni al minuto, e le canzoni che hanno quel ritmo. Una rubrica di Formazione e Sicurezza.">
+<meta property="og:title" content="Il ritmo che salva · Safe & Sound">
+<meta property="og:description" content="100–120 al minuto: il ritmo del massaggio cardiaco, a tempo di musica.">
+<link rel="icon" href="../logo/safe-and-sound-marchio.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--notte:#03001c;--notte-alta:#0b0745;--notte-blu:#060039;--ink:#f1f2ff;--ink2:#a2a6dc;--line:#36337a;--blu:#2c42de;--verde:#5dea84;--rosso:#ff4d5e}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--notte)}
+body{background:var(--notte);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;line-height:1.5;min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:40px}
+.brand{display:flex;align-items:center;gap:12px;font-family:Unbounded;font-weight:800;font-size:18px;text-decoration:none;color:var(--ink)}
+.brand b{color:var(--verde)}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--ink2)}
+h1{font-family:Unbounded;font-weight:800;text-transform:uppercase;font-size:clamp(36px,9vw,68px);line-height:.95;letter-spacing:-.02em;margin:12px 0 18px}
+h1 span{color:#6c6ca6;display:block}
+h1 em{font-style:normal;color:var(--verde)}
+h2{font-family:Unbounded;font-weight:800;text-transform:uppercase;font-size:clamp(22px,5vw,30px);line-height:1;margin:56px 0 20px}
+p.lead{font-size:19px;color:var(--ink2);max-width:56ch}
+.urg{margin:28px 0;padding:18px 20px;border:1.5px solid var(--rosso);border-radius:16px;display:flex;gap:16px;align-items:center}
+.urg strong{font-family:Unbounded;font-size:28px;color:var(--rosso)}
+.metro{margin-top:32px;border:1.5px solid var(--line);border-radius:28px;background:var(--notte-blu);padding:28px 20px;display:grid;justify-items:center;gap:22px;position:relative;overflow:hidden}
+.cuore{width:min(64vw,280px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,var(--notte-alta) 55%,transparent 56%);border:10px solid var(--line);transition:transform .08s ease-out,border-color .08s;position:relative}
+.cuore.batti{transform:scale(.9);border-color:var(--verde)}
+.bpm{font-family:Unbounded;font-weight:800;font-size:clamp(56px,16vw,96px);line-height:1}
+.bpm small{display:block;font-family:"JetBrains Mono";font-size:13px;letter-spacing:.2em;color:var(--ink2);text-align:center;margin-top:6px}
+.controlli{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;width:100%}
+button,.btn{font:600 17px "Instrument Sans";border-radius:999px;padding:14px 26px;min-height:48px;border:1.5px solid var(--ink2);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+button.primario{background:var(--verde);border-color:var(--verde);color:var(--notte);min-width:180px;justify-content:center}
+button:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+.slider{width:100%;max-width:420px;display:grid;gap:8px}
+input[type=range]{width:100%;accent-color:var(--verde);height:32px}
+.scala{display:flex;justify-content:space-between}
+.stat{display:flex;gap:28px;justify-content:center}
+.stat div{text-align:center}
+.stat b{font-family:Unbounded;font-size:28px;display:block}
+.passi{list-style:none;counter-reset:p;display:grid;gap:0}
+.passi li{counter-increment:p;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:20px 0;border-top:1.5px solid var(--line)}
+.passi li::before{content:counter(p,decimal-leading-zero);font-family:Unbounded;font-weight:800;font-size:26px;color:var(--verde)}
+.passi strong{display:block;font-size:20px}
+.passi span{color:var(--ink2)}
+.brani{list-style:none}
+.brani li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1.5px solid var(--line)}
+.brani li span:last-child{font-family:"JetBrains Mono";color:var(--verde);white-space:nowrap}
+.brani small{color:var(--ink2);display:block}
+.nota{margin-top:40px;padding:20px;border-radius:16px;background:var(--notte-alta);color:var(--ink2);font-size:15px}
+footer{margin-top:56px;padding-top:24px;border-top:1.5px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+footer a{color:var(--ink)}
+.fs{display:flex;align-items:center;gap:12px;color:var(--ink2);font-size:14px}
+@media (prefers-reduced-motion:reduce){.cuore{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="https://instagram.com/safe_and_sound_it" aria-label="Safe and Sound su Instagram">
+<svg width="40" height="37" viewBox="0 0 260 240" aria-hidden="true"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span>SAFE <b>&amp;</b> SOUND</span></a>
+<span class="mono">Il ritmo che salva</span>
+</header>
+
+<span class="mono" style="color:var(--verde)">Massaggio cardiaco</span>
+<h1><span>100–120</span>al minuto. <em>A tempo di musica.</em></h1>
+<p class="lead">Nel massaggio cardiaco il ritmo conta. Premi play: il cerchio pulsa alla velocità giusta. Comprimi quando si accende.</p>
+
+<div class="urg" role="note"><strong>112</strong><span>Prima di tutto chiama il 112 e metti il vivavoce. L'operatore ti guida passo passo.</span></div>
+
+<section class="metro" aria-label="Metronomo per il massaggio cardiaco">
+<div class="cuore" id="cuore"><div class="bpm"><span id="bpmVal">110</span><small>al minuto</small></div></div>
+<div class="controlli">
+<button class="primario" id="play" aria-pressed="false">▶ Avvia il ritmo</button>
+<button id="suono" aria-pressed="true">Suono: sì</button>
+</div>
+<div class="slider">
+<label class="mono" for="bpm">Velocità</label>
+<input type="range" id="bpm" min="100" max="120" step="1" value="110">
+<div class="scala mono"><span>100</span><span>110</span><span>120</span></div>
+</div>
+<div class="stat" aria-live="polite">
+<div><b id="conta">0</b><span class="mono">compressioni</span></div>
+<div><b id="tempo">0:00</b><span class="mono">tempo</span></div>
+</div>
+</section>
+
+<h2>Cosa fare</h2>
+<ol class="passi">
+<li><div><strong>Non risponde e non respira normalmente?</strong><span>Chiama il 112, metti il vivavoce e fatti portare un defibrillatore (DAE), se c'è.</span></div></li>
+<li><div><strong>Mani al centro del torace</strong><span>Una sopra l'altra, braccia tese, spalle sopra le mani.</span></div></li>
+<li><div><strong>Spingi forte: 5–6 cm</strong><span>A 100–120 compressioni al minuto. Lascia risalire il torace dopo ogni spinta.</span></div></li>
+<li><div><strong>Non fermarti</strong><span>Continua finché arrivano i soccorsi o il DAE ti dice di fermarti. Se siete in due, datevi il cambio ogni 2 minuti.</span></div></li>
+</ol>
+
+<h2>Le canzoni con il ritmo giusto</h2>
+<ul class="brani">
+<li><span>Stayin' Alive<small>Bee Gees</small></span><span>103 BPM</span></li>
+<li><span>All Star<small>Smash Mouth</small></span><span>104 BPM</span></li>
+<li><span>Ring of Fire<small>Johnny Cash</small></span><span>105 BPM</span></li>
+<li><span>Everybody (Backstreet's Back)<small>Backstreet Boys</small></span><span>108 BPM</span></li>
+<li><span>Eye of the Tiger<small>Survivor</small></span><span>109 BPM</span></li>
+<li><span>Purple Rain<small>Prince</small></span><span>113 BPM</span></li>
+<li><span>Can't Stop the Feeling!<small>Justin Timberlake</small></span><span>113 BPM</span></li>
+<li><span>Billie Jean<small>Michael Jackson</small></span><span>117 BPM</span></li>
+<li><span>Smells Like Teen Spirit<small>Nirvana</small></span><span>117 BPM</span></li>
+<li><span>I Wanna Dance with Somebody<small>Whitney Houston</small></span><span>119 BPM</span></li>
+<li><span>Bad Romance<small>Lady Gaga</small></span><span>119 BPM</span></li>
+</ul>
+<p style="margin-top:20px"><a class="btn" href="https://open.spotify.com/playlist/12lNoV9w3Aw8cLgm0KykzC" target="_blank" rel="noopener">Ascolta la playlist su Spotify</a></p>
+
+<div class="nota">Questa pagina serve a memorizzare il ritmo. <strong style="color:var(--ink)">Non sostituisce un corso BLSD</strong>, che ti insegna anche a usare il defibrillatore: fallo, dura poche ore. Indicazioni basate sulle linee guida European Resuscitation Council 2025 (adulto, rianimazione di base). In emergenza segui sempre le istruzioni dell'operatore del 112.</div>
+
+<footer>
+<span class="fs"><img src="../logo/safe-and-sound-marchio.svg" alt="" width="36" height="33">Una rubrica di Formazione e Sicurezza · <a href="https://www.formazionesicurezza.org">formazionesicurezza.org</a></span>
+<a href="../rischio/">Scopri il tuo rischio sotto casa →</a>
+</footer>
+</div>
+<script>
+(function(){
+  var ctx=null, on=false, suono=true, bpm=110, timer=null, next=0, n=0, t0=0, wake=null;
+  var $=function(id){return document.getElementById(id)};
+  var cuore=$('cuore'), play=$('play');
+  var ridotto=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function click(at){
+    if(!ctx||!suono) return;
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.frequency.value=n%30===0?1320:880; o.type='square';
+    g.gain.setValueAtTime(0.0001,at); g.gain.exponentialRampToValueAtTime(0.35,at+0.005); g.gain.exponentialRampToValueAtTime(0.0001,at+0.06);
+    o.connect(g); g.connect(ctx.destination); o.start(at); o.stop(at+0.08);
+  }
+  function batti(){
+    n++; $('conta').textContent=n;
+    if(!ridotto){cuore.classList.add('batti'); setTimeout(function(){cuore.classList.remove('batti')},90);}
+    else{cuore.style.borderColor=(n%2)?'#5dea84':'#36337a';}
+  }
+  function loop(){
+    var now=ctx?ctx.currentTime:performance.now()/1000;
+    while(next<now+0.1){ click(next); var d=(next-now)*1000; setTimeout(batti,Math.max(0,d)); next+=60/bpm; }
+    var s=Math.floor((performance.now()-t0)/1000); $('tempo').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+  }
+  function start(){
+    try{ ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); ctx.resume&&ctx.resume(); }catch(e){ ctx=null; }
+    on=true; n=0; t0=performance.now(); next=(ctx?ctx.currentTime:performance.now()/1000)+0.05;
+    timer=setInterval(loop,25); play.textContent='■ Ferma'; play.setAttribute('aria-pressed','true');
+    try{ navigator.wakeLock&&navigator.wakeLock.request('screen').then(function(w){wake=w}).catch(function(){}); }catch(e){}
+  }
+  function stop(){
+    on=false; clearInterval(timer); play.textContent='▶ Avvia il ritmo'; play.setAttribute('aria-pressed','false');
+    try{ wake&&wake.release(); wake=null; }catch(e){}
+  }
+  play.addEventListener('click',function(){ on?stop():start(); });
+  $('suono').addEventListener('click',function(){ suono=!suono; this.textContent='Suono: '+(suono?'sì':'no'); this.setAttribute('aria-pressed',String(suono)); });
+  $('bpm').addEventListener('input',function(){ bpm=+this.value; $('bpmVal').textContent=bpm; });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il mio rischio sotto casa · Safe &amp; Sound</title>
+<meta name="description" content="Scrivi il tuo Comune: zona sismica, allerta meteo di oggi e domani, e cosa fare. Crea la tua card da condividere nelle Storie.">
+<meta property="og:title" content="Il mio rischio sotto casa · Safe & Sound">
+<meta property="og:description" content="Zona sismica, allerta di oggi e cosa fare nel tuo Comune. Crea la tua card.">
+<link rel="icon" href="../logo/safe-and-sound-marchio.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--notte:#03001c;--notte-alta:#0b0745;--notte-blu:#060039;--ink:#f1f2ff;--ink2:#a2a6dc;--spento:#6c6ca6;--line:#36337a;--blu:#2c42de;--verde:#5dea84;--l0:#3ddc84;--l1:#ffd43b;--l2:#ff8a1f;--l3:#ff4d5e}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--notte)}
+body{background:var(--notte);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;line-height:1.5;min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:36px}
+.brand{display:flex;align-items:center;gap:12px;font-family:Unbounded;font-weight:800;font-size:18px;text-decoration:none;color:var(--ink)}
+.brand b,.v{color:var(--verde)}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--ink2)}
+h1{font-family:Unbounded;font-weight:800;text-transform:uppercase;font-size:clamp(34px,8.5vw,64px);line-height:.95;letter-spacing:-.02em;margin:12px 0 18px}
+h1 span{color:var(--spento);display:block}
+p.lead{font-size:19px;color:var(--ink2);max-width:56ch}
+.cerca{margin-top:28px;position:relative}
+.cerca label{display:block;margin-bottom:8px}
+.cerca input{width:100%;font:600 22px "Instrument Sans";padding:16px 20px;border-radius:16px;border:1.5px solid var(--line);background:var(--notte-blu);color:var(--ink);min-height:56px}
+.risultati{list-style:none;margin-top:8px;border-radius:16px;overflow:hidden;border:1.5px solid var(--line)}
+.risultati:empty{display:none}
+.risultati button{width:100%;text-align:left;background:var(--notte-blu);color:var(--ink);border:0;border-top:1px solid var(--line);padding:14px 20px;font:400 18px "Instrument Sans";cursor:pointer;min-height:48px;display:flex;justify-content:space-between;gap:12px}
+.risultati li:first-child button{border-top:0}
+.risultati button:hover,.risultati button:focus-visible{background:var(--notte-alta);outline:none}
+.risultati small{color:var(--ink2);font-family:"JetBrains Mono";font-size:13px}
+#esito{margin-top:40px;display:none}
+#esito.on{display:block}
+.blocchi{display:grid;gap:16px}
+.blocco{border:1.5px solid var(--line);border-radius:20px;padding:22px;background:var(--notte-blu)}
+.blocco h2{font-family:Unbounded;font-weight:800;text-transform:uppercase;font-size:26px;line-height:1;margin:8px 0 10px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-weight:600;color:var(--notte)}
+.giorni{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.azioni{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+button.btn,a.btn{font:600 17px "Instrument Sans";border-radius:999px;padding:14px 26px;min-height:48px;border:1.5px solid var(--ink2);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+button.primario{background:var(--verde);border-color:var(--verde);color:var(--notte)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+.anteprima{margin-top:28px;display:flex;justify-content:center}
+.anteprima-box{width:min(100%,360px);aspect-ratio:9/16;position:relative;border-radius:22px;overflow:hidden;border:1.5px solid var(--line)}
+.anteprima-box #card{position:absolute;left:0;top:0;transform-origin:0 0}
+.nota{margin-top:36px;padding:20px;border-radius:16px;background:var(--notte-alta);color:var(--ink2);font-size:14px}
+.nota a{color:var(--ink)}
+footer{margin-top:48px;padding-top:24px;border-top:1.5px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;color:var(--ink2);font-size:14px}
+footer a{color:var(--ink)}
+/* card 1080x1920 */
+#card{width:1080px;height:1920px;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans";overflow:hidden;position:relative}
+#card .al{position:absolute;inset:0;background:radial-gradient(70% 40% at 90% 0%,rgba(44,66,222,.55),transparent 70%),radial-gradient(60% 35% at 0% 100%,rgba(113,64,252,.28),transparent 70%)}
+#card .in{position:absolute;left:84px;right:84px;top:210px;bottom:250px;display:flex;flex-direction:column;gap:40px}
+#card .top{display:flex;justify-content:space-between;align-items:center}
+#card .mk{display:flex;align-items:center;gap:16px;font-family:Unbounded;font-weight:800;font-size:36px}
+#card .mk b{color:#5dea84}
+#card .cm{font-family:"JetBrains Mono";text-transform:uppercase;letter-spacing:.18em;font-size:22px;color:#a2a6dc}
+#card .nome{font-family:Unbounded;font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:-.02em}
+#card .sub{font-size:34px;color:#a2a6dc;margin-top:14px}
+#card .tile{border:2px solid #36337a;border-radius:28px;padding:30px 34px;background:rgba(6,0,57,.75)}
+#card .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+#card .big{font-family:Unbounded;font-weight:800;font-size:86px;line-height:.9}
+#card .desc{font-size:30px;color:#a2a6dc;line-height:1.3;margin-top:12px}
+#card .ck{display:flex;gap:18px;align-items:center;font-size:31px;line-height:1.25;padding:14px 0;border-top:2px solid #36337a}
+#card .ck i{flex:none;width:36px;height:36px;border:3px solid #5dea84;border-radius:8px;display:grid;place-items:center;color:#5dea84;font-style:normal;font-size:22px}
+#card .cchip{display:inline-flex;align-items:center;gap:12px;padding:10px 22px;border-radius:999px;font-weight:600;font-size:28px;color:#03001c}
+#card .foot{position:absolute;left:84px;right:84px;bottom:110px;display:flex;justify-content:space-between;align-items:center;font-family:"JetBrains Mono";text-transform:uppercase;letter-spacing:.14em;font-size:21px;color:#a2a6dc}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="https://instagram.com/safe_and_sound_it" aria-label="Safe and Sound su Instagram">
+<svg width="40" height="37" viewBox="0 0 260 240" aria-hidden="true"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span>SAFE <b>&amp;</b> SOUND</span></a>
+<span class="mono">Il mio rischio sotto casa</span>
+</header>
+
+<span class="mono v">Scopri il tuo</span>
+<h1><span>Il rischio</span>sotto casa tua.</h1>
+<p class="lead">Scrivi il tuo Comune: ti diciamo la zona sismica, l'allerta meteo di oggi e domani, e cosa fare. Poi crea la tua card e condividila nelle Storie.</p>
+
+<div class="cerca">
+<label class="mono" for="q">Il tuo Comune</label>
+<input id="q" type="search" autocomplete="off" placeholder="Es. Tricarico" aria-controls="lista" aria-describedby="stato">
+<ul class="risultati" id="lista" role="listbox" aria-label="Comuni trovati"></ul>
+<p class="mono" id="stato" style="margin-top:10px">Caricamento dei Comuni…</p>
+</div>
+
+<section id="esito" aria-live="polite">
+<div class="blocchi">
+<div class="blocco"><span class="mono">Rischio sismico</span><h2 id="eSisma"></h2><p id="eSismaD"></p></div>
+<div class="blocco"><span class="mono">Allerta meteo · idrogeologica e idraulica</span><h2 id="eZona"></h2><div class="giorni" id="eGiorni"></div><p class="mono" id="eBoll"></p></div>
+<div class="blocco"><span class="mono">Da fare questa settimana</span><ul id="eAz" style="list-style:none;margin-top:10px"></ul></div>
+</div>
+<div class="azioni">
+<button class="btn primario" id="scarica">Scarica la card per le Storie</button>
+<button class="btn" id="condividi" hidden>Condividi</button>
+</div>
+<div class="anteprima"><div class="anteprima-box" id="box"><div id="card"></div></div></div>
+</section>
+
+<div class="nota">I dati sono indicativi e servono a informarti, non sostituiscono le comunicazioni ufficiali. Allerte: <a href="https://mappe.protezionecivile.it/it/mappe-rischi/bollettino-di-criticita/" target="_blank" rel="noopener">Bollettino di criticità del Dipartimento della Protezione Civile</a> (CC-BY 4.0), aggiornato ogni giorno. Il bollettino regionale e il tuo Comune possono dare indicazioni più dettagliate: seguili sempre. Zona sismica: classificazione dei Comuni (dataset Italy.Core, fonti ISTAT/INGV); verifica sul sito della tua Regione. In emergenza chiama il 112.</div>
+
+<footer>
+<span>Una rubrica di Formazione e Sicurezza · <a href="https://www.formazionesicurezza.org">formazionesicurezza.org</a></span>
+<a href="../rcp/">Il ritmo che salva: massaggio cardiaco →</a>
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var COMUNI=[], ALL=null, scelto=null;
+var LIV=[{n:'Nessuna allerta',c:'#3ddc84'},{n:'Allerta gialla',c:'#ffd43b'},{n:'Allerta arancione',c:'#ff8a1f'},{n:'Allerta rossa',c:'#ff4d5e'}];
+var SISMA={1:'È la zona più pericolosa: possono verificarsi fortissimi terremoti.',2:'Possono verificarsi forti terremoti.',3:'Possono verificarsi forti terremoti, ma sono rari.',4:'È la zona meno pericolosa: i terremoti sono rari.'};
+function norm(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+fetch('comuni.json').then(function(r){return r.json()}).then(function(d){
+  COMUNI=d.c.map(function(x){return {nome:x[0],prov:x[1],reg:x[2],zs:x[3],zone:x[4],k:norm(x[0])}});
+  $('stato').textContent=COMUNI.length.toLocaleString('it-IT')+' Comuni';
+}).catch(function(){ $('stato').textContent='Impossibile caricare i Comuni. Riprova più tardi.'; });
+fetch('allerte.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){ALL=d}).catch(function(){ALL=null});
+
+$('q').addEventListener('input',function(){
+  var q=norm(this.value), ul=$('lista'); ul.innerHTML='';
+  if(q.length<2) return;
+  var a=COMUNI.filter(function(c){return c.k.indexOf(q)===0}).concat(COMUNI.filter(function(c){return c.k.indexOf(q)>0})).slice(0,8);
+  a.forEach(function(c){
+    var li=document.createElement('li'), b=document.createElement('button');
+    b.type='button'; b.setAttribute('role','option');
+    b.innerHTML='<span>'+esc(c.nome)+'</span><small>'+esc(c.prov)+' · '+esc(c.reg.split('/')[0])+'</small>';
+    b.addEventListener('click',function(){ scegli(c); });
+    li.appendChild(b); ul.appendChild(li);
+  });
+  if(!a.length){ ul.innerHTML='<li><button type="button" disabled>Nessun Comune trovato</button></li>'; }
+});
+
+function livelli(c, giorno){
+  if(!ALL||!ALL[giorno]) return null;
+  var max=-1;
+  c.zone.forEach(function(z){ var v=ALL[giorno][z]; if(v&&v.l>max) max=v.l; });
+  return max<0?null:max;
+}
+function dataBoll(){
+  if(!ALL) return '';
+  return ALL.bollettino||'';
+}
+function brano(c,o,d){
+  if((o||0)>=1||(d||0)>=1) return {t:'Riders on the Storm',a:'The Doors'};
+  if(c.zs===1||c.zs===2) return {t:'Our House',a:'Crosby, Stills, Nash & Young'};
+  return {t:"Stayin' Alive",a:'Bee Gees'};
+}
+function azioni(c,o,d){
+  var a=[];
+  if((o||0)>=1||(d||0)>=1) a.push('Con l’allerta: niente sottopassi, cantine e garage');
+  if(c.zs===1||c.zs===2){ a.push('Fissa alle pareti i mobili alti e pesanti'); a.push('Scopri l’area di attesa del tuo Comune'); }
+  else { a.push('Leggi il piano di protezione civile del tuo Comune'); }
+  a.push('Prepara lo zaino di emergenza');
+  a.push('Impara il massaggio cardiaco: 100–120 al minuto');
+  return a.slice(0,3);
+}
+function scegli(c){
+  scelto=c; $('lista').innerHTML=''; $('q').value=c.nome;
+  var o=livelli(c,'oggi'), d=livelli(c,'domani');
+  $('eSisma').textContent=c.zs?('Zona '+c.zs):'Dato non disponibile';
+  $('eSismaD').textContent=c.zs?SISMA[c.zs]:'Verifica la classificazione sul sito della tua Regione.';
+  $('eZona').textContent=c.zone.length?c.zone.join(' · '):'Zona non trovata';
+  var g=$('eGiorni'); g.innerHTML='';
+  [['Oggi',o],['Domani',d]].forEach(function(x){
+    var s=document.createElement('span'); s.className='chip';
+    if(x[1]===null){ s.style.background='#a2a6dc'; s.textContent=x[0]+': non disponibile'; }
+    else { s.style.background=LIV[x[1]].c; s.textContent=x[0]+': '+LIV[x[1]].n; }
+    g.appendChild(s);
+  });
+  $('eBoll').textContent=dataBoll()?('Fonte: '+dataBoll()):'Bollettino non disponibile: controlla il sito della Protezione Civile.';
+  var az=azioni(c,o,d); $('eAz').innerHTML=az.map(function(x){return '<li style="padding:10px 0;border-top:1.5px solid #36337a">✓ '+esc(x)+'</li>'}).join('');
+  disegnaCard(c,o,d,az);
+  $('esito').classList.add('on');
+  $('esito').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function chip(lbl,l){
+  if(l===null) return '<span class="cchip" style="background:#a2a6dc">'+lbl+': n.d.</span>';
+  return '<span class="cchip" style="background:'+LIV[l].c+'">'+lbl+': '+LIV[l].n.replace('Allerta ','')+'</span>';
+}
+function disegnaCard(c,o,d,az){
+  var b=brano(c,o,d), len=c.nome.length, fs=len<=8?150:len<=12?118:len<=16?92:len<=22?72:58;
+  var mk='<svg width="64" height="59" viewBox="0 0 260 240"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  $('card').innerHTML='<div class="al"></div><div class="in">'+
+   '<div class="top"><span class="mk">'+mk+'<span>SAFE <b>&amp;</b> SOUND</span></span></div>'+
+   '<div><span class="cm" style="color:#5dea84">Il mio rischio sotto casa</span><div class="nome" style="font-size:'+fs+'px;margin-top:18px">'+esc(c.nome)+'</div><div class="sub">'+esc(c.prov)+' · '+esc(c.reg.split('/')[0])+'</div></div>'+
+   '<div class="tile"><span class="cm">Rischio sismico</span><div class="row" style="margin-top:12px"><span class="big">'+(c.zs?('Zona '+c.zs):'n.d.')+'</span></div><div class="desc">'+esc(c.zs?SISMA[c.zs]:'Verifica sul sito della tua Regione.')+'</div></div>'+
+   '<div class="tile"><span class="cm">Allerta meteo</span><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:16px">'+chip('Oggi',o)+chip('Domani',d)+'</div><div class="desc" style="font-size:24px">'+esc(dataBoll()||'Bollettino non disponibile')+'</div></div>'+
+   '<div class="tile" style="display:flex;align-items:center;gap:26px"><span style="flex:none;width:76px;height:76px;border-radius:50%;background:#5dea84;display:grid;place-items:center;color:#03001c;font-size:30px">▶</span><div><span class="cm">La mia traccia</span><div style="font-size:40px;font-weight:600;line-height:1.15;margin-top:6px">'+esc(b.t)+'</div><div style="font-size:28px;color:#a2a6dc">'+esc(b.a)+'</div></div></div>'+
+   '<div><span class="cm">3 cose da fare</span><div style="margin-top:12px">'+az.map(function(x){return '<div class="ck"><i>✓</i>'+esc(x)+'</div>'}).join('')+'</div></div>'+
+   '</div><div class="foot"><span>Scopri il tuo · link in bio</span><span style="color:#5dea84">@safe_and_sound_it</span></div>';
+  scala();
+}
+function scala(){ var box=$('box'); $('card').style.transform='scale('+(box.clientWidth/1080)+')'; }
+window.addEventListener('resize',scala);
+
+function png(){
+  var card=$('card'), clone=card.cloneNode(true);
+  clone.style.transform='none'; clone.style.position='fixed'; clone.style.left='-2000px'; clone.style.top='0';
+  document.body.appendChild(clone);
+  return (document.fonts?document.fonts.ready:Promise.resolve()).then(function(){
+    return html2canvas(clone,{width:1080,height:1920,scale:1,backgroundColor:'#03001c',useCORS:true});
+  }).then(function(cv){ document.body.removeChild(clone); return new Promise(function(res){cv.toBlob(res,'image/png')}); });
+}
+function nomeFile(){ return 'safe-and-sound-rischio-'+norm(scelto?scelto.nome:'comune')+'.png'; }
+$('scarica').addEventListener('click',function(){
+  var btn=this; btn.disabled=true; btn.textContent='Preparo la card…';
+  png().then(function(blob){
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=nomeFile(); document.body.appendChild(a); a.click(); a.remove();
+  }).catch(function(){ alertBox('Non riesco a creare l’immagine su questo dispositivo. Fai uno screenshot dell’anteprima.'); })
+  .finally(function(){ btn.disabled=false; btn.textContent='Scarica la card per le Storie'; });
+});
+var share=$('condividi');
+try{ if(navigator.canShare&&navigator.canShare({files:[new File([new Blob()],'x.png',{type:'image/png'})]})) share.hidden=false; }catch(e){}
+share.addEventListener('click',function(){
+  png().then(function(blob){
+    var f=new File([blob],nomeFile(),{type:'image/png'});
+    return navigator.share({files:[f],title:'Il mio rischio sotto casa',text:'Scopri il tuo con @safe_and_sound_it'});
+  }).catch(function(){});
+});
+function alertBox(t){ $('eBoll').textContent=t; }
+})();
+</script>
+</body>
+</html>
