@@ -16,14 +16,17 @@ def get(url, api=False):
         return json.load(r)
 
 def ultimo_bollettino():
-    commits = get(f"{API}/commits?path=files&per_page=5", api=True)
-    for c in commits:
-        det = get(f"{API}/commits/{c['sha']}", api=True)
-        for f in det.get("files", []):
-            m = re.match(r"files/(\d{8}_\d{4})\.json$", f["filename"])
-            if m:
-                return m.group(1)
-    raise SystemExit("Bollettino non trovato")
+    """Trova l'ultimo bollettino elencando i file del repository DPC con git (senza API)."""
+    import subprocess, tempfile
+    d = tempfile.mkdtemp()
+    subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--no-checkout",
+                    f"https://github.com/{REPO}.git", d], check=True)
+    out = subprocess.run(["git", "-C", d, "-c", "gc.auto=0", "ls-tree", "--name-only", "HEAD", "files/"],
+                         check=True, capture_output=True, text=True).stdout
+    nomi = sorted(m.group(1) for m in (re.match(r"files/(\d{8}_\d{4})\.json$", l) for l in out.splitlines()) if m)
+    if not nomi:
+        raise SystemExit("Bollettino non trovato")
+    return nomi[-1]
 
 def livello(testo):
     t = (testo or "").upper()
