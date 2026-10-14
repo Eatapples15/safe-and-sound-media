@@ -12,7 +12,8 @@ import re
 import sys
 
 ANTEPRIMA = 125
-MAX_HASHTAG = 8
+MAX_HASHTAG = 5
+ESCA = ["tagga", "commenta sì", "commenta si", "doppio tap", "metti like", "lascia un like", "scrivi sì", "scrivi si"]
 VIETATE = {
     # allarmismo e acchiappa-click
     "shock": "allarmismo", "incredibile": "acchiappa-click", "non crederai": "acchiappa-click",
@@ -54,7 +55,11 @@ def controlla(testo):
     elif "#safeandsound" not in [x.lower() for x in tag]:
         esiti.append(("attenzione", "Manca #SafeAndSound."))
     if len(tag) > MAX_HASHTAG:
-        esiti.append(("attenzione", f"{len(tag)} hashtag: ne bastano 5–{MAX_HASHTAG}, mirati."))
+        esiti.append(("attenzione", f"{len(tag)} hashtag: ne bastano 3–{MAX_HASHTAG}, mirati."))
+
+    for x in ESCA:
+        if x in basso:
+            esiti.append(("errore", f"«{x}»: esca per l'engagement, Instagram la penalizza. Usa un invito a mandare o salvare."))
 
     for nome in NOMI_VIETATI:
         if nome in basso:
@@ -72,9 +77,9 @@ def controlla(testo):
     if numeri:
         esiti.append(("info", "Numeri da verificare con la fonte: " + ", ".join(sorted(set(numeri)))))
 
-    inviti = ["?", "commenti", "salva", "condividi", "manda", "link in bio", "scorri", "tagga", "segui"]
+    inviti = ["?", "commenti", "salva", "condividi", "manda", "link in bio", "scorri", "segui"]
     if not any(x in basso for x in inviti):
-        esiti.append(("attenzione", "Nessun invito all'azione (salva, condividi, commenta, una domanda)."))
+        esiti.append(("attenzione", "Nessun invito all'azione (manda a qualcuno, salva, una domanda)."))
 
     return esiti
 

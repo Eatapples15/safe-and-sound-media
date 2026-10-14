@@ -1,7 +1,7 @@
 # Strumenti della redazione
 
 - `prepara_ambiente.sh` — scarica i font del brand e controlla Playwright e ffmpeg.
-- `controlla_didascalia.py` — controllo della didascalia: anteprima a 125 caratteri, hashtag, fonte, parole da evitare, nome dell'autore.
+- `controlla_didascalia.py` — controllo della didascalia: anteprima a 125 caratteri, hashtag (3–5), esche per l'engagement, fonte, parole da evitare, nome dell'autore.
 - `caroselli/` — generatore dei caroselli 1080×1350.
   - `fissi.py` contiene i blocchi riutilizzabili: `cover`, `lista`, `check`, `chiusura` e la pagina `P`.
   - `esempio_nuovo_post.py` è il modello per un post nuovo: copialo, cambia `POST`, esegui `python3 <file>.py`, poi `node shotn.js <cartella>`.
