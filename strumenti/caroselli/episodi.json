@@ -1,0 +1,133 @@
+[
+ {
+  "n": "01",
+  "slug": "ep01-piano-casa",
+  "tema": "Il piano di emergenza di casa tua",
+  "titolo": [
+   "Il piano",
+   "di casa",
+   "tua."
+  ],
+  "brano": "Our House",
+  "artista": "Crosby, Stills, Nash & Young",
+  "anno": "1970",
+  "durata": "2:59",
+  "occhiello": "13 ottobre · Giornata ONU per la riduzione del rischio di disastri",
+  "perche": "Una canzone sulla casa come luogo semplice, quotidiano, sicuro. È lì che la prevenzione comincia: prima che succeda qualcosa.",
+  "s3t": "Il piano in 4 mosse",
+  "s3": [
+   [
+    "Conosci i rischi",
+    "Il piano di protezione civile del tuo Comune dice quali sono e dove andare."
+   ],
+   [
+    "Scegli due punti di ritrovo",
+    "Uno vicino a casa, uno fuori dal quartiere."
+   ],
+   [
+    "Scrivi i numeri utili",
+    "112 per le emergenze, Comune, medico, un parente fuori zona."
+   ],
+   [
+    "Dividi i compiti",
+    "Chi prende i bambini, chi aiuta gli anziani, chi pensa agli animali."
+   ]
+  ],
+  "s4t": "Lo zaino di emergenza",
+  "s4": [
+   "Acqua e cibo a lunga conservazione",
+   "Torcia e radio a pile, power bank",
+   "Farmaci e kit di primo soccorso",
+   "Copia dei documenti in busta impermeabile",
+   "Fischietto, coperta isotermica, contanti"
+  ],
+  "chiusura": "Prepararlo richiede un'ora. Fallo questa settimana, con chi vive con te."
+ },
+ {
+  "n": "02",
+  "slug": "ep02-allerta-meteo",
+  "tema": "Allerta meteo: cosa fare",
+  "titolo": [
+   "Quando",
+   "arriva",
+   "l'allerta."
+  ],
+  "brano": "Riders on the Storm",
+  "artista": "The Doors",
+  "anno": "1971",
+  "durata": "7:09",
+  "occhiello": "Autunno · stagione delle piogge intense",
+  "perche": "Pioggia, tuoni e una calma tesa: il suono del cielo che si prepara. La differenza la fa quello che facciamo prima che arrivi.",
+  "s3t": "I colori dell'allerta",
+  "s3": [
+   [
+    "Verde",
+    "Nessuna allerta: fenomeni non significativi."
+   ],
+   [
+    "Gialla",
+    "Criticità ordinaria: fenomeni localizzati, presta attenzione."
+   ],
+   [
+    "Arancione",
+    "Criticità moderata: possibili danni diffusi."
+   ],
+   [
+    "Rossa",
+    "Criticità elevata: rischio grave per persone e beni."
+   ]
+  ],
+  "s4t": "Durante il temporale",
+  "s4": [
+   "Non scendere in cantine, garage e sottopassi",
+   "Usa l'auto solo se indispensabile",
+   "Sali ai piani alti, non scendere",
+   "Stai lontano da fiumi, torrenti e ponti",
+   "Segui i canali ufficiali del tuo Comune"
+  ],
+  "chiusura": "L'allerta la emette il Centro Funzionale. Cosa fare, lo decidi tu: adesso, non sotto la pioggia."
+ },
+ {
+  "n": "03",
+  "slug": "ep03-stress-lavoro",
+  "tema": "Stress lavoro-correlato",
+  "titolo": [
+   "Sotto",
+   "pressione."
+  ],
+  "brano": "Under Pressure",
+  "artista": "Queen & David Bowie",
+  "anno": "1981",
+  "durata": "4:08",
+  "occhiello": "Sicurezza sul lavoro · D.Lgs. 81/08",
+  "perche": "La pressione non è un difetto personale. È un rischio come gli altri: si misura, si valuta, si riduce.",
+  "s3t": "Cosa dice la legge",
+  "s3": [
+   [
+    "È un obbligo",
+    "Il DVR deve valutare anche lo stress lavoro-correlato (art. 28 D.Lgs. 81/08)."
+   ],
+   [
+    "Si parte dai dati",
+    "Assenze, turnover, infortuni, richieste di trasferimento."
+   ],
+   [
+    "Poi si ascolta",
+    "Se servono, la percezione dei lavoratori: questionari e focus group."
+   ],
+   [
+    "E si interviene",
+    "Organizzazione, ruoli chiari, formazione, comunicazione."
+   ]
+  ],
+  "s4t": "Segnali da non ignorare",
+  "s4": [
+   "Carichi e ritmi che non lasciano respiro",
+   "Ruoli e compiti poco chiari",
+   "Conflitti che si ripetono",
+   "Turni e orari che non si conciliano con la vita",
+   "Errori e piccoli infortuni in aumento"
+  ],
+  "chiusura": "Se riconosci questi segnali, parlane con l'RSPP o con il tuo RLS. È il loro lavoro."
+ }
+]
