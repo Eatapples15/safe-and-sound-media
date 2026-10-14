@@ -1,0 +1,50 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,#2c42de 0%,#060039 45%,#03001c 75%)}
+canvas{position:absolute;inset:0}
+.sc{position:absolute;left:84px;right:84px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.top{position:absolute;left:84px;right:84px;top:200px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:40px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+#flash{position:absolute;inset:0;background:#ffd43b;opacity:0}
+.it{display:block;transform-origin:left center}
+</style></head><body>
+<div id="bg"></div><canvas id="rain" width="1080" height="1920"></canvas><div id="flash"></div>
+<div class="top"><span style="display:flex;align-items:center;gap:16px"><svg width="58" height="54" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Ora solare</span></div>
+
+<div class="sc" id="s1"><span class="mono it" id="a0" style="font-size:30px;color:#ffd43b;margin-bottom:36px">domenica torna l'ora solare</span><span class="disp it" id="a1" style="font-size:118px">il buio</span><span class="disp it" id="a2" style="font-size:118px">arriva</span><span class="disp it" id="a3" style="font-size:118px;color:#ffd43b">un'ora prima.</span></div>
+<div class="sc" id="s2"><span class="disp it" id="b1" style="font-size:110px">tu vedi</span><span class="disp it" id="b2" style="font-size:110px">i fari.</span><span class="disp it" id="b3" style="font-size:110px;color:#6c6ca6;margin-top:30px">i fari</span><span class="disp it" id="b4" style="font-size:110px;color:#6c6ca6">non vedono</span><span class="disp it" id="b5" style="font-size:110px;color:#6c6ca6">te.</span></div>
+<div class="sc" id="s3"><span class="it" id="c0" style="font-size:56px;font-weight:600;color:#a2a6dc">pedoni morti in strada nel 2025</span><span class="disp it" id="c1" style="font-size:300px;color:#ff4d5e;line-height:.95">419</span><span class="mono it" id="c2" style="font-size:24px;color:#a2a6dc;margin-top:30px">fonte: ISTAT</span></div>
+<div class="sc" id="s4"><span class="it" id="d0" style="font-size:56px;font-weight:600;color:#a2a6dc;margin-bottom:20px">fuori città, senza lampioni:</span><span class="disp it" id="d1" style="font-size:120px">in fila</span><span class="disp it" id="d2" style="font-size:120px;color:#5dea84">indiana.</span><span class="it" id="d3" style="font-size:44px;font-weight:600;margin-top:30px">E qualcosa di chiaro<br>o riflettente addosso.</span><span class="mono it" id="d4" style="font-size:24px;color:#a2a6dc;margin-top:30px">codice della strada, art. 190</span></div>
+<div class="sc" id="s5" style="justify-content:center;gap:56px">
+<span class="disp it" id="e1" style="font-size:92px">Torni<br>a piedi?<br><span style="color:#5dea84">Fatti vedere.</span></span>
+<span class="it" id="e2" style="font-size:42px;color:#a2a6dc">Mandalo a chi esce a camminare la sera.</span>
+<div class="it" id="e3" style="display:flex;align-items:center;gap:24px;border-top:2px solid #36337a;padding-top:44px"><span class="mono" style="font-size:22px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:80px"><span class="disp" style="font-size:40px;line-height:1">Formazione<br>e Sicurezza</span></div>
+<span class="mono it" id="e4" style="font-size:24px;color:#5dea84">🎧 These Boots Are Made for Walkin' · Nancy Sinatra</span></div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x)=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+// rain: deterministic
+const N=140,drops=[];let s=7;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+for(let i=0;i<N;i++)drops.push({x:rnd()*1180,y:rnd()*1920,v:1400+rnd()*900,l:40+rnd()*70,a:.08+rnd()*.22});
+const ctx=$('rain').getContext('2d');
+function rain(t,k){ctx.clearRect(0,0,1080,1920);ctx.lineWidth=2;for(const d of drops){const y=(d.y+d.v*t)%2100-120;const x=d.x-(y*0.18);ctx.strokeStyle=`rgba(162,166,220,${d.a*k})`;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-d.l*.18,y+d.l);ctx.stroke();}}
+function win(t,a,b,fi=.25,fo=.25){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+function inn(el,t,a,dx=0,dy=60,dur=.45,sc=false){const p=eo((t-a)/dur);el.style.opacity=cl((t-a)/dur*1.5);el.style.transform=sc?`scale(${0.6+0.4*eb((t-a)/dur)})`:`translate(${dx*(1-p)}px,${dy*(1-p)}px)`;}
+window.draw=function(t){
+ ctx.clearRect(0,0,1080,1920);
+
+ $('flash').style.background='#f1f2ff';
+ const fa=(t>=2.8&&t<5.6)?Math.max(0,Math.sin((t-2.8)*1.6))*0.10:0; $('flash').style.opacity=fa;
+ $('s1').style.opacity=win(t,0,2.8,.01,.15); inn($('a0'),t,0,0,30); inn($('a1'),t,.3,0,60); inn($('a2'),t,.55,0,60); inn($('a3'),t,.85,0,0,.35,true);
+ $('s2').style.opacity=win(t,2.8,5.6,.1,.15); inn($('b1'),t,2.8,0,50); inn($('b2'),t,3.05,0,50); inn($('b3'),t,3.9,0,50); inn($('b4'),t,4.15,0,50); inn($('b5'),t,4.4,0,0,.3,true);
+ $('s3').style.opacity=win(t,5.6,8.0,.1,.15); inn($('c0'),t,5.6,0,30); inn($('c1'),t,5.9,0,0,.35,true); inn($('c2'),t,6.6,0,20);
+ $('s4').style.opacity=win(t,8.0,11.2,.1,.15); inn($('d0'),t,8.0,0,30); inn($('d1'),t,8.3,0,50); inn($('d2'),t,8.55,0,0,.3,true); inn($('d3'),t,9.3,0,30); inn($('d4'),t,9.8,0,20);
+ $('s5').style.opacity=win(t,11.2,14.5,.2,.01); inn($('e1'),t,11.2,0,60); inn($('e2'),t,11.7,0,40); inn($('e3'),t,12.0,0,40); inn($('e4'),t,12.3,0,30);
+};
+draw(0);
+</script></body></html>
