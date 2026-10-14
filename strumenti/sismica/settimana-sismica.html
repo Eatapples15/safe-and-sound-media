@@ -1,0 +1,67 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,#2c42de 0%,#060039 45%,#03001c 75%)}
+canvas{position:absolute;inset:0}
+.sc{position:absolute;left:84px;right:84px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.top{position:absolute;left:84px;right:84px;top:200px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:40px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+#flash{position:absolute;inset:0;background:#ffd43b;opacity:0}
+.it{display:block;transform-origin:left center}
+</style></head><body>
+<div id="bg"></div><div id="flash"></div>
+<div class="top"><span style="display:flex;align-items:center;gap:16px"><svg width="58" height="54" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Settimana sismica</span></div>
+
+<canvas id="mappa" width="1080" height="1920" style="position:absolute;inset:0"></canvas>
+<div class="sc" id="s1"><span class="mono it" id="a0" style="font-size:30px;color:#ffd43b;margin-bottom:36px">settimana sismica · <span id="per"></span></span><span class="disp it" id="a1" style="font-size:300px;line-height:.9;color:#f1f2ff">0</span><span class="it" id="a2" style="font-size:60px;font-weight:600;margin-top:20px">terremoti in 7 giorni.</span><span class="it" id="a3" style="font-size:44px;font-weight:600;color:#a2a6dc;margin-top:16px">In Italia e zone vicine.</span></div>
+<div id="cnt2" style="position:absolute;left:84px;bottom:230px;opacity:0"><span class="disp" id="cv" style="font-size:120px">0</span><span class="mono" style="font-size:24px;color:#a2a6dc;margin-left:20px">terremoti</span></div>
+<div id="leg" style="position:absolute;right:84px;bottom:250px;opacity:0;display:grid;gap:14px;font-size:30px;color:#a2a6dc">
+<span><i style="display:inline-block;width:20px;height:20px;border-radius:50%;background:#a2a6dc;margin-right:12px"></i>sotto 2,5</span>
+<span><i style="display:inline-block;width:20px;height:20px;border-radius:50%;background:#ffd43b;margin-right:12px"></i>2,5 – 3,5</span>
+<span><i style="display:inline-block;width:20px;height:20px;border-radius:50%;background:#ff4d5e;margin-right:12px"></i>oltre 3,5</span></div>
+<div class="sc" id="s3"><span class="it" id="c0" style="font-size:56px;font-weight:600;color:#a2a6dc">il più forte</span><span class="disp it" id="c1" style="font-size:250px;color:#ff4d5e;line-height:.95">M 0</span><span class="it" id="c2" style="font-size:52px;font-weight:600;margin-top:20px"></span><span class="mono it" id="c3" style="font-size:26px;color:#a2a6dc;margin-top:24px"></span></div>
+<div class="sc" id="s4"><span class="disp it" id="d1" style="font-size:230px;color:#5dea84;line-height:.95">0%</span><span class="it" id="d2" style="font-size:58px;font-weight:600;margin-top:20px">troppo deboli<br>per sentirli.</span><span class="disp it" id="d3" style="font-size:84px;margin-top:60px">L'Italia trema<br>ogni giorno.</span></div>
+<div class="sc" id="s5" style="justify-content:center;gap:56px">
+<span class="disp it" id="e1" style="font-size:88px">Sai cosa fare<br>prima, durante,<br><span style="color:#5dea84">dopo?</span></span>
+<span class="it" id="e2" style="font-size:40px;color:#a2a6dc">La zona sismica del tuo Comune: link in bio.</span>
+<div class="it" id="e3" style="display:flex;align-items:center;gap:24px;border-top:2px solid #36337a;padding-top:44px"><span class="mono" style="font-size:22px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:80px"><span class="disp" style="font-size:40px;line-height:1">Formazione<br>e Sicurezza</span></div>
+<span class="mono it" id="e4" style="font-size:24px;color:#5dea84"></span><span class="mono it" id="e5" style="font-size:20px;color:#a2a6dc">fonte: INGV · dati preliminari</span></div>
+<script src="italia.js"></script><script src="dati.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x)=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+
+function win(t,a,b,fi=.25,fo=.25){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+function inn(el,t,a,dx=0,dy=60,dur=.45,sc=false){const p=eo((t-a)/dur);el.style.opacity=cl((t-a)/dur*1.5);el.style.transform=sc?`scale(${0.6+0.4*eb((t-a)/dur)})`:`translate(${dx*(1-p)}px,${dy*(1-p)}px)`;}
+const D=window.DATI, I=window.ITALIA, cx=$('mappa').getContext('2d');
+$('per').textContent=D.periodo; $('c2').textContent=D.top.luogo; $('c3').textContent=D.top.giorno; $('e4').textContent='🎧 '+D.canzone;
+const OX=90, OY=420, path=new Path2D(I.d);
+const P=(la,lo)=>[OX+(lo-I.L0)*I.k*I.sx, OY+(I.B1-la)*I.sx];
+const col=m=>m>=3.5?'#ff4d5e':m>=2.5?'#ffd43b':'rgba(162,166,220,.55)';
+const fmt=n=>n.toLocaleString('it-IT');
+window.draw=function(t){
+ cx.clearRect(0,0,1080,1920);
+ const mapK=win(t,2.6,7.4,.3,.3);
+ $('s1').style.opacity=win(t,0,2.6,.01,.2); inn($('a0'),t,0,0,30); inn($('a1'),t,.2,0,0,.4,true); inn($('a2'),t,.7,0,30); inn($('a3'),t,1.0,0,20);
+ $('a1').textContent=fmt(Math.round(D.n*eo(t/1.6)));
+ if(mapK>0){
+  cx.globalAlpha=mapK; cx.save(); cx.translate(OX,OY); cx.fillStyle='#0b0745'; cx.strokeStyle='#36337a'; cx.lineWidth=2.5; cx.fill(path); cx.stroke(path); cx.restore();
+  const f=cl((t-2.9)/3.6), n=Math.floor(D.ev.length*f);
+  for(let i=0;i<n;i++){const [la,lo,m]=D.ev[i];const [x,y]=P(la,lo);const r=3+Math.pow(Math.max(m,0),1.7)*2.2;cx.fillStyle=col(m);cx.beginPath();cx.arc(x,y,r,0,7);cx.fill();
+   const age=(f-i/D.ev.length)*3.6; if(m>=2.5&&age<.5){cx.strokeStyle=col(m);cx.lineWidth=3;cx.globalAlpha=mapK*(1-age/.5);cx.beginPath();cx.arc(x,y,r+age*90,0,7);cx.stroke();cx.globalAlpha=mapK;}}
+  cx.globalAlpha=1;
+  $('cv').textContent=fmt(n);
+ }
+ $('cnt2').style.opacity=mapK; $('leg').style.opacity=mapK;
+ $('s3').style.opacity=win(t,7.4,10.2,.1,.15); inn($('c0'),t,7.4,0,30); inn($('c1'),t,7.6,0,0,.35,true); inn($('c2'),t,8.2,0,30); inn($('c3'),t,8.5,0,20);
+ $('c1').textContent='M '+D.top.m;
+ $('s4').style.opacity=win(t,10.2,13.0,.1,.15); inn($('d1'),t,10.2,0,0,.35,true); inn($('d2'),t,10.6,0,30); inn($('d3'),t,11.4,0,40);
+ $('d1').textContent=Math.round(D.pct_sotto*eo((t-10.2)/1))+'%';
+ $('s5').style.opacity=win(t,13.0,16.5,.2,.01); inn($('e1'),t,13.0,0,60); inn($('e2'),t,13.4,0,40); inn($('e3'),t,13.7,0,40); inn($('e4'),t,14.0,0,30); inn($('e5'),t,14.2,0,20);
+};
+draw(0);
+</script></body></html>
