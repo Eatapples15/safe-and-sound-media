@@ -21,7 +21,7 @@ for r in righe:
         continue
     c = r.split("|")
     try:
-        ev.append({"t": c[1][:19], "lat": float(c[2]), "lon": float(c[3]), "m": float(c[10]), "luogo": c[12]})
+        ev.append({"t": c[1][:19], "lat": float(c[2]), "lon": float(c[3]), "z": float(c[4]), "m": float(c[10]), "luogo": c[12].replace(" [Mare]", " (in mare)").replace("[Mare]", "(in mare)").strip()})
     except (ValueError, IndexError):
         continue
 ev.sort(key=lambda e: e["t"])
@@ -32,12 +32,13 @@ sotto = sum(1 for e in ev if e["m"] < 2.5)
 pct = round(100 * sotto / len(ev))
 m3 = sum(1 for e in ev if e["m"] >= 3)
 def gm(d): return f"{d.day} {MESI[d.month-1]}"
+def il(d): return ("l'" if d.day in (1, 8, 11) else "il ") + gm(d)
 periodo = f"{lun.day}–{gm(dom)}" if lun.month == dom.month else f"{gm(lun)} – {gm(dom)}"
 td = dt.date.fromisoformat(top["t"][:10])
 canzone = CANZONI[lun.isocalendar()[1] % len(CANZONI)]
 mag = lambda x: f"{x:.1f}".replace(".", ",")
 dati = {"periodo": periodo, "n": len(ev), "pct_sotto": pct, "m3": m3,
-        "top": {"m": mag(top["m"]), "luogo": top["luogo"], "giorno": gm(td)},
+        "top": {"m": mag(top["m"]), "luogo": top["luogo"], "giorno": gm(td), "z": round(top["z"])},
         "canzone": canzone, "ev": [[round(e["lat"], 3), round(e["lon"], 3), round(e["m"], 1)] for e in ev]}
 open("strumenti/sismica/dati.js", "w").write("window.DATI=" + json.dumps(dati, ensure_ascii=False) + ";")
 out = f"sismica/{oggi}"
@@ -45,7 +46,7 @@ os.makedirs(out, exist_ok=True)
 json.dump(dati, open(f"{out}/dati.json", "w"), ensure_ascii=False)
 cap = f"""{len(ev)} terremoti in 7 giorni in Italia e zone vicine. Ne hai sentito qualcuno? Probabilmente no.
 
-Settimana sismica {periodo}: il {pct}% ha avuto magnitudo sotto 2,5, troppo debole per essere avvertito. Il più forte: magnitudo {mag(top['m'])}, {top['luogo']}, il {gm(td)}.
+Settimana sismica {periodo}: il {pct}% ha avuto magnitudo sotto 2,5, in genere troppo debole per essere avvertito. Il più forte: magnitudo {mag(top['m'])}, {top['luogo']}, {il(td)}, a {round(top['z'])} km di profondità.
 
 L'Italia trema ogni giorno: per questo conviene sapere cosa fare prima, durante e dopo. Salvalo e cerca la zona sismica del tuo Comune (link in bio).
 
