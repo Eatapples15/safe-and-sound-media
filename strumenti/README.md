@@ -11,3 +11,6 @@
   - Per generare: `node cap.js modello-reel.html <secondi> <cartella-fotogrammi>`, poi `ffmpeg -framerate 30 -i <cartella>/%04d.jpg -c:v libx264 -pix_fmt yuv420p -crf 19 -movflags +faststart <uscita>.mp4`.
 
 I file pubblicati vanno in `tracce/` o `fissi/` e si usano da `https://raw.githubusercontent.com/Eatapples15/safe-and-sound-media/main/...`.
+- `accadde-oggi/` — storie «Accadde oggi» 1080×1920 per gli anniversari del calendario.
+  - `dati.json` contiene una voce per anniversario (`giorno` gg-mm, data, titolo, sottotitolo, 3 cose da fare, fonte ufficiale). Nessun commento su vittime o colpe.
+  - `python3 strumenti/accadde-oggi/genera.py [id ...]` rigenera tutte le storie (o solo quelle indicate) in `fissi/accadde-oggi/<id>.png`.

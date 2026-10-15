@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;background:#03001c;color:#f1f2ff;font-family:'Instrument Sans',sans-serif;overflow:hidden}
+.wrap{position:relative;width:1080px;height:1920px;padding:200px 90px 0;background:radial-gradient(1200px 900px at 80% 0%,#0d0a5c 0%,#060039 40%,#03001c 75%)}
+.tag{font-family:'JetBrains Mono',monospace;font-size:34px;letter-spacing:.14em;color:#5dea84;text-transform:uppercase}
+.data{font-family:'Unbounded',sans-serif;font-weight:700;font-size:52px;margin-top:18px;color:#a2a6dc}
+h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:76px;line-height:1.08;margin-top:40px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:#ffd43b}
+.sub{font-size:36px;line-height:1.35;color:#a2a6dc;margin-top:30px;max-width:880px}
+.wave{margin:48px 0 44px;height:6px;background:linear-gradient(90deg,#2c42de,#5dea84);border-radius:3px;width:220px}
+.h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:44px;margin-bottom:28px}
+ol{list-style:none;counter-reset:n}
+li{counter-increment:n;display:flex;gap:30px;align-items:flex-start;font-size:37px;line-height:1.28;margin-bottom:22px;border:2px solid #36337a;border-radius:28px;padding:24px 30px;background:rgba(6,0,57,.55)}
+li::before{content:counter(n);font-family:'Unbounded',sans-serif;font-weight:800;font-size:40px;color:#03001c;background:#5dea84;min-width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-4px}
+li b{color:#f1f2ff}
+.fonte{font-family:'JetBrains Mono',monospace;font-size:25px;color:#a2a6dc;margin-top:24px}
+.foot{position:absolute;left:90px;right:90px;bottom:150px;display:flex;align-items:center;gap:28px;border-top:2px solid #36337a;padding-top:32px}
+.foot img{width:96px;height:96px}
+.foot .t1{font-family:'Unbounded',sans-serif;font-weight:700;font-size:36px}
+.foot .t2{font-size:28px;color:#a2a6dc;margin-top:6px}
+.fit h1{font-size:68px}
+</style></head><body><div class="wrap">
+<div class="tag">Accadde oggi</div>
+<div class="data">8 dicembre 2018</div>
+<h1>Una sera in discoteca e <em>le uscite di sicurezza</em>.</h1>
+<div class="sub">Corinaldo, provincia di Ancona, notte tra il 7 e l'8 dicembre 2018.</div>
+<div class="wave"></div>
+<div class="h2">Quando entri in un locale:</div>
+<ol><li><span><b>Guarda dove sono</b> le uscite di sicurezza, non solo l'ingresso.</span></li><li><span><b>Un'uscita chiusa o bloccata</b> è vietata: segnalala al gestore o al 115.</span></li><li><span><b>Se c'è panico</b>, vai verso l'uscita più vicina e non tornare indietro per le tue cose.</span></li></ol>
+<div class="fonte">Fonte: Vigili del Fuoco</div>
+<div class="foot"><img src="../../logo/safe-and-sound-marchio.svg"><div><div class="t1">Segui @safe_and_sound_it</div><div class="t2">Una rubrica di Formazione e Sicurezza · formazionesicurezza.org</div></div></div>
+</div>
+<script>/* se il testo invade il piede, riduce il titolo */
+const w=document.querySelector('.fonte'),f=document.querySelector('.foot');
+if(w.getBoundingClientRect().bottom>f.getBoundingClientRect().top-30)document.body.classList.add('fit');</script>
+</body></html>
