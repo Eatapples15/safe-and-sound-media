@@ -2,7 +2,10 @@ name: Aggiorna allerte DPC
 
 on:
   schedule:
-    - cron: "20 13,14,15,16,18,21 * * *"
+    # Il DPC pubblica di solito tra le 15 e le 16 (ora italiana); GitHub ritarda o salta
+    # spesso le esecuzioni programmate, quindi controlliamo ogni 15 minuti in quella fascia.
+    - cron: "7,22,37,52 12-16 * * *"
+    - cron: "17 18,21,23 * * *"
   workflow_dispatch:
 
 permissions:

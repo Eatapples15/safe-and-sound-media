@@ -141,8 +141,21 @@ $('q').addEventListener('input',function(){
   if(!a.length){ ul.innerHTML='<li><button type="button" disabled>Nessun Comune trovato</button></li>'; }
 });
 
-function livelli(c, giorno){
-  if(!ALL||!ALL[giorno]) return null;
+// Il bollettino ha «oggi» e «domani» riferiti alla sua data di emissione (id AAAAMMGG_hhmm),
+// non alla data in cui si apre la pagina: li allineiamo al calendario di Roma.
+function giornoRoma(){
+  var p=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  return Date.UTC(+p.slice(0,4),+p.slice(5,7)-1,+p.slice(8,10));
+}
+function chiave(offset){
+  if(!ALL||!ALL.id) return null;
+  var b=Date.UTC(+ALL.id.slice(0,4),+ALL.id.slice(4,6)-1,+ALL.id.slice(6,8));
+  var k=Math.round((giornoRoma()-b)/864e5)+offset;
+  return k===0?'oggi':(k===1?'domani':null);
+}
+function livelli(c, offset){
+  var giorno=chiave(offset);
+  if(!giorno||!ALL[giorno]) return null;
   var max=-1;
   c.zone.forEach(function(z){ var v=ALL[giorno][z]; if(v&&v.l>max) max=v.l; });
   return max<0?null:max;
@@ -167,14 +180,14 @@ function azioni(c,o,d){
 }
 function scegli(c){
   scelto=c; $('lista').innerHTML=''; $('q').value=c.nome;
-  var o=livelli(c,'oggi'), d=livelli(c,'domani');
+  var o=livelli(c,0), d=livelli(c,1);
   $('eSisma').textContent=c.zs?('Zona '+c.zs):'Dato non disponibile';
   $('eSismaD').textContent=c.zs?SISMA[c.zs]:'Verifica la classificazione sul sito della tua Regione.';
   $('eZona').textContent=c.zone.length?c.zone.join(' · '):'Zona non trovata';
   var g=$('eGiorni'); g.innerHTML='';
   [['Oggi',o],['Domani',d]].forEach(function(x){
     var s=document.createElement('span'); s.className='chip';
-    if(x[1]===null){ s.style.background='#a2a6dc'; s.textContent=x[0]+': non disponibile'; }
+    if(x[1]===null){ s.style.background='#a2a6dc'; s.textContent=x[0]+(x[0]==='Domani'&&ALL&&chiave(0)==='domani'?': in attesa del nuovo bollettino':': non disponibile'); }
     else { s.style.background=LIV[x[1]].c; s.textContent=x[0]+': '+LIV[x[1]].n; }
     g.appendChild(s);
   });
