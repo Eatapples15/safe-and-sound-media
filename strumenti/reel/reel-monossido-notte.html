@@ -1,0 +1,59 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,#2c42de 0%,#060039 45%,#03001c 75%)}
+canvas{position:absolute;inset:0}
+.sc{position:absolute;left:84px;right:84px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.top{position:absolute;left:84px;right:84px;top:200px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:40px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+.it{display:block;transform-origin:left center}
+.row{display:flex;align-items:baseline;gap:28px;padding:30px 0;border-top:2px solid #36337a}
+.row .n{font-family:"JetBrains Mono";font-size:30px;color:#5dea84;flex:none;width:60px}
+.row .t{font-size:54px;font-weight:600;line-height:1.1}
+.row .t b{font-family:"Unbounded";font-weight:800;text-transform:uppercase;font-size:50px;letter-spacing:-.01em}
+</style></head><body>
+<div id="bg"></div><canvas id="fumo" width="1080" height="1920"></canvas>
+<div class="top"><span style="display:flex;align-items:center;gap:16px"><svg width="58" height="54" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Non ci avevo pensato</span></div>
+
+<div class="sc" id="s1"><span class="mono it" id="a0" style="font-size:30px;color:#ffd43b;margin-bottom:36px">di notte, in casa</span><span class="disp it" id="a1" style="font-size:118px">chi dorme</span><span class="disp it" id="a2" style="font-size:118px">non si accorge</span><span class="disp it" id="a3" style="font-size:104px;color:#ff8a1f">del monossido.</span></div>
+
+<div class="sc" id="s2"><span class="disp it" id="b1" style="font-size:112px">niente odore.</span><span class="disp it" id="b2" style="font-size:112px">niente colore.</span><span class="it" id="b3" style="font-size:56px;font-weight:600;color:#a2a6dc;margin-top:40px">E mentre dormi non senti<br>nessun segnale.</span></div>
+
+<div class="sc" id="s3"><span class="it" id="c0" style="font-size:56px;font-weight:600;color:#a2a6dc">chi dorme può intossicarsi</span><span class="disp it" id="c1" style="font-size:150px;color:#ff8a1f;line-height:.95">prima dei<br>sintomi.</span><span class="it" id="c2" style="font-size:52px;font-weight:600;margin-top:36px">Braciere, stufa, camino, caldaia:<br>tutto ciò che brucia lo produce.</span><span class="mono it" id="c3" style="font-size:24px;color:#a2a6dc;margin-top:40px">fonte: ISS · EpiCentro</span></div>
+
+<div class="sc" id="s4"><span class="mono it" id="d0" style="font-size:30px;color:#5dea84;margin-bottom:30px">stasera fai così</span>
+<div class="row it" id="d1"><span class="n">01</span><span class="t"><b>Braciere</b><br>mai dentro casa</span></div>
+<div class="row it" id="d2"><span class="n">02</span><span class="t"><b>Finestre</b><br>apri ogni giorno</span></div>
+<div class="row it" id="d3"><span class="n">03</span><span class="t"><b>Caldaia e canna</b><br>controllo ogni anno</span></div>
+<div class="row it" id="d4" style="border-bottom:2px solid #36337a"><span class="n">04</span><span class="t"><b>Rilevatore CO</b><br>vicino alle camere</span></div></div>
+
+<div class="sc" id="s5" style="justify-content:center;gap:56px">
+<span class="disp it" id="e1" style="font-size:92px">Se brucia,<br><span style="color:#5dea84">deve uscire.</span></span>
+<span class="it" id="e2" style="font-size:42px;color:#a2a6dc">Mandalo a chi accende il braciere<br>o la stufa la sera.</span>
+<div class="it" id="e3" style="display:flex;align-items:center;gap:24px;border-top:2px solid #36337a;padding-top:44px"><span class="mono" style="font-size:22px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:80px"><span class="disp" style="font-size:40px;line-height:1">Formazione<br>e Sicurezza</span></div>
+<span class="mono it" id="e4" style="font-size:24px;color:#5dea84">🎧 Wake Me Up When September Ends · Green Day</span></div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x)=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+// fumo: deterministico, sbuffi che salgono lenti
+const N=46,puffs=[];let s=11;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+for(let i=0;i<N;i++)puffs.push({x:rnd()*1080,y:rnd()*2200,v:40+rnd()*60,r:90+rnd()*180,a:.03+rnd()*.05,w:rnd()*6.28});
+const ctx=$('fumo').getContext('2d');
+function fumo(t,k){ctx.clearRect(0,0,1080,1920);for(const p of puffs){const y=((p.y-p.v*t)%2300+2300)%2300-200;const x=p.x+Math.sin(t*.6+p.w)*40;const g=ctx.createRadialGradient(x,y,0,x,y,p.r);g.addColorStop(0,`rgba(162,166,220,${p.a*k})`);g.addColorStop(1,'rgba(162,166,220,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,p.r,0,6.29);ctx.fill();}}
+function win(t,a,b,fi=.25,fo=.25){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+function inn(el,t,a,dx=0,dy=60,dur=.45,sc=false){const p=eo((t-a)/dur);el.style.opacity=cl((t-a)/dur*1.5);el.style.transform=sc?`scale(${0.6+0.4*eb((t-a)/dur)})`:`translate(${dx*(1-p)}px,${dy*(1-p)}px)`;}
+window.draw=function(t){
+ fumo(t, t<9.6?1:Math.max(.35,1-(t-9.6)/1.2));
+ // primo fotogramma già leggibile: a0..a3 visibili da t=0
+ $('s1').style.opacity=win(t,-1,3.0,.01,.15); inn($('a0'),t,-.4,0,20); inn($('a1'),t,-.35,0,30); inn($('a2'),t,-.3,0,30); inn($('a3'),t,-.2,0,30);
+ $('s2').style.opacity=win(t,3.0,5.9,.1,.15); inn($('b1'),t,3.0,0,50); inn($('b2'),t,3.4,0,50); inn($('b3'),t,4.2,0,30);
+ $('s3').style.opacity=win(t,5.9,9.6,.1,.15); inn($('c0'),t,5.9,0,30); inn($('c1'),t,6.2,0,0,.35,true); inn($('c2'),t,7.2,0,30); inn($('c3'),t,7.8,0,20);
+ $('s4').style.opacity=win(t,9.6,14.4,.1,.15); inn($('d0'),t,9.6,0,20); inn($('d1'),t,9.9,-60,0); inn($('d2'),t,10.7,-60,0); inn($('d3'),t,11.5,-60,0); inn($('d4'),t,12.3,-60,0);
+ $('s5').style.opacity=win(t,14.4,18,.2,.01); inn($('e1'),t,14.4,0,60); inn($('e2'),t,14.9,0,40); inn($('e3'),t,15.3,0,40); inn($('e4'),t,15.6,0,30);
+};
+draw(0);
+</script></body></html>
