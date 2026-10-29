@@ -1,0 +1,76 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,#5a1a2e 0%,#060039 45%,#03001c 75%)}
+canvas{position:absolute;inset:0}
+.sc{position:absolute;left:84px;right:84px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.top{position:absolute;left:84px;right:84px;top:200px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:40px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+.it{display:block;transform-origin:left center}
+.cl{display:flex;align-items:center;gap:34px;padding:22px 0;border-top:2px solid #36337a}
+.cl .L{font-family:"Unbounded";font-weight:800;font-size:96px;width:120px;height:120px;flex:none;display:flex;align-items:center;justify-content:center;border:5px solid #36337a;border-radius:18px;line-height:1}
+.cl .t{font-size:50px;font-weight:600;line-height:1.1}
+.cl .t b{font-family:"Unbounded";font-weight:800;text-transform:uppercase;font-size:46px;letter-spacing:-.01em}
+.cl .t i{font-style:normal;color:#a2a6dc;font-size:38px}
+.cl.f .L{border-color:#5dea84;color:#5dea84;background:#0b0745}
+.cl.f .t b{color:#5dea84}
+.row{display:flex;align-items:baseline;gap:28px;padding:30px 0;border-top:2px solid #36337a}
+.row .n{font-family:"JetBrains Mono";font-size:30px;color:#5dea84;flex:none;width:60px}
+.row .t{font-size:54px;font-weight:600;line-height:1.1}
+.row .t b{font-family:"Unbounded";font-weight:800;text-transform:uppercase;font-size:50px;letter-spacing:-.01em}
+#bigF{font-family:"Unbounded";font-weight:800;font-size:520px;line-height:.8;color:#5dea84;position:absolute;right:60px;top:1080px;opacity:0}
+</style></head><body>
+<div id="bg"></div><canvas id="braci" width="1080" height="1920"></canvas>
+<div class="top"><span style="display:flex;align-items:center;gap:16px"><svg width="58" height="54" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Come funziona</span></div>
+
+<div id="bigF">F</div>
+<div class="sc" id="s1"><span class="mono it" id="a0" style="font-size:30px;color:#ffd43b;margin-bottom:36px">sull'etichetta dell'estintore</span><span class="disp it" id="a1" style="font-size:150px">F come</span><span class="disp it" id="a2" style="font-size:112px;color:#ff8a1f">friggitrice.</span><span class="it" id="a3" style="font-size:52px;font-weight:600;color:#a2a6dc;margin-top:40px">E se non c'è, quell'estintore<br>non è fatto per l'olio.</span></div>
+
+<div class="sc" id="s2"><span class="it" id="b0" style="font-size:56px;font-weight:600;color:#a2a6dc">olio che brucia in padella:</span><span class="disp it" id="b1" style="font-size:150px;color:#ff4d5e;line-height:.95">mai<br>acqua.</span><span class="it" id="b2" style="font-size:52px;font-weight:600;margin-top:40px">L'acqua bolle di colpo<br>e spara l'olio in fiamme<br>tutto intorno.</span></div>
+
+<div class="sc" id="s3"><span class="mono it" id="c0" style="font-size:30px;color:#5dea84;margin-bottom:30px">le 5 classi di fuoco</span>
+<div class="cl it" id="c1"><span class="L">A</span><span class="t"><b>Solidi</b><br><i>legno, carta, tessuti</i></span></div>
+<div class="cl it" id="c2"><span class="L">B</span><span class="t"><b>Liquidi</b><br><i>benzina, solventi, vernici</i></span></div>
+<div class="cl it" id="c3"><span class="L">C</span><span class="t"><b>Gas</b><br><i>metano, GPL</i></span></div>
+<div class="cl it" id="c4"><span class="L">D</span><span class="t"><b>Metalli</b><br><i>magnesio, sodio</i></span></div>
+<div class="cl f it" id="c5" style="border-bottom:2px solid #36337a"><span class="L">F</span><span class="t"><b>Oli e grassi</b><br><i>da cucina</i></span></div>
+<span class="mono it" id="c6" style="font-size:24px;color:#a2a6dc;margin-top:36px">fonte: UNI EN 2 · Vigili del Fuoco</span></div>
+
+<div class="sc" id="s4"><span class="mono it" id="d0" style="font-size:30px;color:#5dea84;margin-bottom:30px">se prende fuoco la padella</span>
+<div class="row it" id="d1"><span class="n">01</span><span class="t"><b>Spegni</b><br>il fornello</span></div>
+<div class="row it" id="d2"><span class="n">02</span><span class="t"><b>Copri</b><br>con un coperchio</span></div>
+<div class="row it" id="d3"><span class="n">03</span><span class="t"><b>Lascia lì</b><br>non spostarla</span></div>
+<div class="row it" id="d4" style="border-bottom:2px solid #36337a"><span class="n">04</span><span class="t"><b>Se non basta</b><br>esci e chiama il 112</span></div></div>
+
+<div class="sc" id="s5" style="justify-content:center;gap:56px">
+<span class="disp it" id="e1" style="font-size:88px">Leggi le lettere<br><span style="color:#5dea84">prima che serva.</span></span>
+<span class="it" id="e2" style="font-size:42px;color:#a2a6dc">Mandalo a chi frigge a casa<br>o lavora in cucina.</span>
+<div class="it" id="e3" style="display:flex;align-items:center;gap:24px;border-top:2px solid #36337a;padding-top:44px"><span class="mono" style="font-size:22px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:80px"><span class="disp" style="font-size:40px;line-height:1">Formazione<br>e Sicurezza</span></div>
+<span class="mono it" id="e4" style="font-size:24px;color:#5dea84">🎧 Fuoco nel fuoco · Eros Ramazzotti</span></div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x)=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+// braci: scintille deterministiche che salgono
+const N=90,sp=[];let s=29;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+for(let i=0;i<N;i++)sp.push({x:rnd()*1080,y:rnd()*2100,v:120+rnd()*260,r:2+rnd()*5,a:.25+rnd()*.55,w:rnd()*6.28,c:rnd()<.5?'255,138,31':'255,212,59'});
+const ctx=$('braci').getContext('2d');
+function braci(t,k){ctx.clearRect(0,0,1080,1920);for(const p of sp){const y=((p.y-p.v*t)%2100+2100)%2100-90;const x=p.x+Math.sin(t*1.3+p.w)*30;const fl=.6+.4*Math.sin(t*9+p.w*3);ctx.fillStyle=`rgba(${p.c},${p.a*k*fl})`;ctx.beginPath();ctx.arc(x,y,p.r,0,6.29);ctx.fill();}}
+function win(t,a,b,fi=.25,fo=.25){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+function inn(el,t,a,dx=0,dy=60,dur=.45,sc=false){const p=eo((t-a)/dur);el.style.opacity=cl((t-a)/dur*1.5);el.style.transform=sc?`scale(${0.6+0.4*eb((t-a)/dur)})`:`translate(${dx*(1-p)}px,${dy*(1-p)}px)`;}
+window.draw=function(t){
+ braci(t, t<6.3?1:(t<12.6?.45:.25));
+ // primo fotogramma già leggibile
+ $('s1').style.opacity=win(t,-1,3.4,.01,.15); inn($('a0'),t,-.4,0,20); inn($('a1'),t,-.35,0,30); inn($('a2'),t,-.3,0,30); inn($('a3'),t,1.2,0,30);
+ $('bigF').style.opacity=win(t,-1,3.4,.01,.15)*.14;
+ $('s2').style.opacity=win(t,3.4,6.6,.1,.15); inn($('b0'),t,3.4,0,30); inn($('b1'),t,3.7,0,0,.35,true); inn($('b2'),t,4.5,0,30);
+ $('s3').style.opacity=win(t,6.6,12.6,.1,.15); inn($('c0'),t,6.6,0,20); inn($('c1'),t,6.9,-60,0); inn($('c2'),t,7.4,-60,0); inn($('c3'),t,7.9,-60,0); inn($('c4'),t,8.4,-60,0); inn($('c5'),t,9.0,0,0,.4,true); inn($('c6'),t,9.8,0,20);
+ const pulse=t>9.4&&t<12.6?.5+.5*Math.sin((t-9.4)*6):0; $('c5').querySelector('.L').style.boxShadow=`0 0 ${40*pulse}px rgba(93,234,132,${.7*pulse})`;
+ $('s4').style.opacity=win(t,12.6,17.0,.1,.15); inn($('d0'),t,12.6,0,20); inn($('d1'),t,12.9,-60,0); inn($('d2'),t,13.6,-60,0); inn($('d3'),t,14.3,-60,0); inn($('d4'),t,15.0,-60,0);
+ $('s5').style.opacity=win(t,17.0,21,.2,.01); inn($('e1'),t,17.0,0,60); inn($('e2'),t,17.5,0,40); inn($('e3'),t,17.9,0,40); inn($('e4'),t,18.2,0,30);
+};
+draw(0);
+</script></body></html>
