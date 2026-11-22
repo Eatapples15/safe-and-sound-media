@@ -1,0 +1,107 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#stage{position:absolute;inset:0}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,#2c42de 0%,#060039 45%,#03001c 75%)}
+#dust{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 40%,rgba(255,77,94,.0),rgba(0,0,0,.55));opacity:0}
+canvas{position:absolute;inset:0}
+.sc{position:absolute;left:84px;right:230px;top:230px;bottom:480px;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.top{position:absolute;left:84px;right:84px;top:200px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:40px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+.it{display:block;transform-origin:left center}
+#clock{font-family:"JetBrains Mono";font-weight:700;font-size:200px;letter-spacing:-.04em;line-height:1;color:#f1f2ff;display:flex;align-items:baseline}
+#clock .s{font-size:80px;color:#ffd43b;margin-left:12px;letter-spacing:0}
+.row{display:flex;align-items:baseline;gap:30px;padding:30px 0;border-top:2px solid #36337a}
+.row .n{font-family:"JetBrains Mono";font-weight:700;font-size:44px;color:#5dea84;flex:none;width:150px}
+.row .t{font-size:50px;font-weight:600;line-height:1.12}
+.fonte{font-size:24px;color:#a2a6dc;margin-top:40px}
+#phone{position:absolute;left:84px;top:560px;width:600px;height:1300px;border-radius:64px;border:10px solid #1a1760;background:#03001c;overflow:hidden;box-shadow:0 40px 120px rgba(44,66,222,.45),0 0 0 2px #36337a;opacity:0}
+#phone .scr{position:absolute;inset:0;transform-origin:0 0}
+#phone img{position:absolute;left:0;top:0;width:580px;height:1255px;opacity:0}
+#hl{position:absolute;left:24px;width:516px;top:874px;height:68px;border:4px solid #5dea84;border-radius:14px;box-shadow:0 0 40px rgba(93,234,132,.7);opacity:0}
+#cap6{position:absolute;left:84px;right:230px;top:292px;opacity:0}
+</style></head><body><div id="stage">
+<div id="bg"></div><div id="dust"></div><canvas id="sismo" width="1080" height="1920"></canvas>
+<div class="top"><span style="display:flex;align-items:center;gap:16px"><svg width="58" height="54" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Accadde oggi · 23.11</span></div>
+
+<!-- S1 gancio: già scritto dal fotogramma 1 -->
+<div class="sc" id="s1"><span class="mono it" id="a0" style="font-size:30px;color:#a2a6dc;margin-bottom:20px">domenica sera, 23 novembre 1980</span>
+<div class="it" id="clock"><span id="hm">19:34</span><span class="s" id="ss">:00</span></div>
+<span class="disp it" id="a1" style="font-size:104px;margin-top:40px">un minuto.</span>
+<span class="disp it" id="a2" style="font-size:72px;color:#ff8a1f;margin-top:22px;line-height:1">L'Italia non<br>era pronta.</span></div>
+
+<!-- S2 dove e quanto -->
+<div class="sc" id="s2"><span class="mono it" id="b0" style="font-size:30px;color:#ffd43b;margin-bottom:30px">23.11.1980 · ore 19:34</span><span class="disp it" id="b1" style="font-size:118px">Irpinia e</span><span class="disp it" id="b2" style="font-size:104px">Basilicata.</span><span class="it" id="b3" style="font-size:60px;font-weight:600;margin-top:44px">Magnitudo <b style="font-family:Unbounded;color:#ff8a1f">6.9</b></span></div>
+
+<!-- S3 il bilancio, sobrio -->
+<div class="sc" id="s3"><span class="disp it" id="c1" style="font-size:150px">2.734</span><span class="disp it" id="c2" style="font-size:86px;color:#a2a6dc">vittime.</span><span class="it" id="c3" style="font-size:44px;font-weight:600;margin-top:44px;line-height:1.3;color:#d9dbf7">8.848 feriti.<br>Oltre 400.000 sfollati.</span><span class="mono it fonte" id="c4">fonte: Dipartimento della Protezione Civile</span></div>
+
+<!-- S4 il problema -->
+<div class="sc" id="s4"><span class="disp it" id="d1" style="font-size:92px">I soccorsi<br>arrivano.</span><span class="disp it" id="d2" style="font-size:118px;color:#ff4d5e;margin-top:40px">Nessuno</span><span class="disp it" id="d3" style="font-size:92px">li coordina.</span></div>
+
+<!-- S5 la svolta -->
+<div class="sc" id="s5"><span class="mono it" id="e0" style="font-size:30px;color:#ffd43b;margin-bottom:26px">dopo tre giorni di confusione</span><span class="it" id="e1" style="font-size:58px;font-weight:600">arriva un commissario:</span><span class="disp it" id="e2" style="font-size:80px;color:#5dea84;margin-top:26px;line-height:.98">Giuseppe<br>Zamberletti.</span></div>
+
+<!-- S6 nasce il sistema -->
+<div class="sc" id="s6"><span class="disp it" id="f0" style="font-size:70px;margin-bottom:40px;line-height:1">Da lì nasce la<br><span style="color:#5dea84">protezione civile.</span></span>
+<div class="row it" id="f1"><span class="n">1982</span><span class="t">il Dipartimento</span></div>
+<div class="row it" id="f2"><span class="n">1992</span><span class="t">il Servizio nazionale</span></div>
+<div class="row it" id="f3" style="border-bottom:2px solid #36337a"><span class="n">oggi</span><span class="t">i volontari sono<br>dentro il sistema</span></div></div>
+
+<!-- S7 tu: il telefono -->
+<div id="cap6"><span class="disp it" id="g1" style="font-size:54px;line-height:1.02">Il sistema c'è.<br><span style="color:#5dea84">Il primo anello<br>sei tu.</span></span></div>
+<div id="phone"><div class="scr" id="scr">
+<img id="p0" src="irpinia-ph/00.png"><img id="p1" src="irpinia-ph/01.png"><img id="p2" src="irpinia-ph/02.png"><img id="p3" src="irpinia-ph/03.png"><img id="p4" src="irpinia-ph/04.png"><img id="p5" src="irpinia-ph/05.png"><img id="p6" src="irpinia-ph/10.png"><div id="hl"></div></div></div>
+
+<!-- S8 chiusura con loop su 19:34 -->
+<div class="sc" id="s8" style="justify-content:center;gap:44px">
+<span class="disp it" id="h1" style="font-size:76px;line-height:1">Sai dov'è<br><span style="color:#5dea84">l'area di attesa</span><br>del tuo Comune?</span>
+<span class="it" id="h2" style="font-size:46px;font-weight:600">Cercala stasera.<br><span style="color:#a2a6dc">Mandalo a chi vive con te.</span></span>
+<div class="it" id="h3" style="display:flex;align-items:center;gap:24px;border-top:2px solid #36337a;padding-top:40px"><span class="mono" style="font-size:22px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:76px"><span class="disp" style="font-size:38px;line-height:1">Formazione<br>e Sicurezza</span></div>
+<span class="mono it" id="h4" style="font-size:22px;color:#a2a6dc">fonti: Protezione Civile · INGV · Io non rischio</span></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eb=x=>{x=cl(x);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function win(t,a,b,fi=.25,fo=.25){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+function inn(el,t,a,dx=0,dy=60,dur=.45,sc=false){const p=eo((t-a)/dur);el.style.opacity=cl((t-a)/dur*1.5);el.style.transform=sc?`scale(${0.6+0.4*eb((t-a)/dur)})`:`translate(${dx*(1-p)}px,${dy*(1-p)}px)`;}
+const T=31; // durata totale
+// ampiezza del sismogramma: la scossa nei primi secondi, poi quiete; piccolo ritorno sul loop
+function amp(t){return .05+1.15*Math.exp(-Math.pow((t-1.6)/1.25,2))*(t>0?1:0)+.35*Math.exp(-Math.pow((t-4.2)/1.0,2))+.12*Math.exp(-Math.pow((t-30.4)/0.5,2));}
+function n(x){return Math.sin(x*1.7)+.6*Math.sin(x*3.9+1.3)+.35*Math.sin(x*9.1+.4)+.2*Math.sin(x*17.3+2.1);}
+const ctx=$('sismo').getContext('2d');
+function sismo(t,alpha){ctx.clearRect(0,0,1080,1920);ctx.globalAlpha=alpha;const y0=1640;ctx.strokeStyle='rgba(54,51,122,.9)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,y0);ctx.lineTo(1080,y0);ctx.stroke();
+ ctx.strokeStyle='#f1f2ff';ctx.lineWidth=4;ctx.lineJoin='round';ctx.beginPath();
+ for(let x=0;x<=1000;x+=4){const tt=t-(1000-x)/500;const a=tt<0?0.05:amp(tt);const y=y0+n(tt*22)*a*120;x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke();
+ const a=amp(t),y=y0+n(t*22)*a*120;ctx.fillStyle='#5dea84';ctx.beginPath();ctx.arc(1000,y,9+a*8,0,6.29);ctx.fill();ctx.globalAlpha=1;}
+window.draw=function(t){
+ const phoneOn=win(t,19.4,26.7,.3,.3);
+ sismo(t,1-phoneOn*.85);
+ // tremore dello schermo durante la scossa
+ const sh=Math.max(0,amp(t)-.12)*16; $('stage').style.transform=`translate(${Math.sin(t*61)*sh}px,${Math.cos(t*47)*sh*.6}px)`;
+ $('dust').style.opacity=cl(amp(t)-.1)*.8;
+ // orologio: il minuto che passa (secondi accelerati 0→59 nei primi 3 s)
+ const sec=Math.min(59,Math.floor(cl(t/3.1)*60)); $('ss').textContent=':'+String(sec).padStart(2,'0');
+ $('s1').style.opacity=win(t,-1,3.3,.01,.2); inn($('a0'),t,-.4,0,10); inn($('clock'),t,-.4,0,10); inn($('a1'),t,-.4,0,10); inn($('a2'),t,.9,0,30,.35);
+ $('s2').style.opacity=win(t,3.3,7.0,.12,.18); inn($('b0'),t,3.3,0,20); inn($('b1'),t,3.45,0,40); inn($('b2'),t,3.7,0,40); inn($('b3'),t,4.8,0,0,.35,true);
+ $('s3').style.opacity=win(t,7.0,11.0,.25,.2); inn($('c1'),t,7.1,0,20,.8); inn($('c2'),t,7.6,0,20,.6); inn($('c3'),t,8.6,0,20,.5); inn($('c4'),t,9.2,0,10);
+ $('s4').style.opacity=win(t,11.0,14.2,.12,.18); inn($('d1'),t,11.0,0,40); inn($('d2'),t,12.1,0,0,.3,true); inn($('d3'),t,12.5,0,30);
+ $('s5').style.opacity=win(t,14.2,17.0,.12,.18); inn($('e0'),t,14.2,0,20); inn($('e1'),t,14.4,0,30); inn($('e2'),t,15.0,-50,0);
+ $('s6').style.opacity=win(t,17.0,19.6,.12,.2); inn($('f0'),t,17.0,0,40); inn($('f1'),t,17.4,-60,0); inn($('f2'),t,17.9,-60,0); inn($('f3'),t,18.4,-60,0);
+ // telefono: cerca il Comune, zona sismica, area di attesa
+ $('cap6').style.opacity=phoneOn; inn($('g1'),t,19.4,0,30);
+ $('phone').style.opacity=phoneOn; const pp=eo((t-19.4)/.6); $('phone').style.transform=`translateY(${120*(1-pp)}px)`;
+ const seq=[[0,19.4],[1,20.5],[2,20.75],[3,21.0],[4,21.25],[5,21.5],[6,22.4]];
+ let cur=0; for(const [i,a] of seq) if(t>=a) cur=i;
+ for(let i=0;i<=6;i++) $('p'+i).style.opacity=(i===cur?1:0);
+ const z=eo((t-23.4)/1.1); $('scr').style.transform=`translate(${-4*z}px,${-395*z}px) scale(${1+0.15*z})`;
+ $('hl').style.opacity=cl((t-24.4)/.3)*(0.75+0.25*Math.sin(t*9));
+ // chiusura
+ $('s8').style.opacity=win(t,26.7,T+1,.25,.01); inn($('h1'),t,26.7,0,50); inn($('h2'),t,27.8,0,30); inn($('h3'),t,28.4,0,30); inn($('h4'),t,28.8,0,20);
+};
+draw(0);
+</script></body></html>
