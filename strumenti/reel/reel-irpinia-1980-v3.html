@@ -1,0 +1,181 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#03001c;color:#f1f2ff;font-family:"Instrument Sans",sans-serif}
+.disp{font-family:"Unbounded",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.94}
+.mono{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.18em}
+#stage{position:absolute;inset:0}
+canvas{position:absolute;left:0;top:0}
+.L{position:absolute;opacity:0;will-change:transform,opacity,filter}
+.top{position:absolute;left:84px;right:84px;top:196px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#a2a6dc}
+.marchio{font-family:"Unbounded";font-weight:800;font-size:36px;color:#f1f2ff;letter-spacing:-.01em}.marchio b{color:#5dea84}
+#grain{position:absolute;inset:-256px;background:url(grana.png);opacity:.07;mix-blend-mode:screen;pointer-events:none}
+#vig{position:absolute;inset:0;background:radial-gradient(120% 85% at 50% 45%,transparent 55%,rgba(0,0,0,.6) 100%);pointer-events:none}
+#black{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+.row{display:flex;align-items:baseline;gap:30px;padding:28px 0;border-top:2px solid #36337a}
+.row .n{font-family:"JetBrains Mono";font-weight:700;font-size:44px;color:#5dea84;flex:none;width:150px}
+.row .t{font-size:48px;font-weight:600;line-height:1.12}
+#phone{position:absolute;left:84px;top:560px;width:600px;height:1300px;border-radius:64px;border:10px solid #1a1760;background:#03001c;overflow:hidden;box-shadow:0 40px 120px rgba(44,66,222,.45),0 0 0 2px #36337a;opacity:0}
+#phone .scr{position:absolute;inset:0;transform-origin:0 0}
+#phone img{position:absolute;left:0;top:0;width:580px;height:1255px;opacity:0}
+#hl{position:absolute;left:24px;width:516px;top:874px;height:68px;border:4px solid #5dea84;border-radius:14px;box-shadow:0 0 40px rgba(93,234,132,.7);opacity:0}
+</style></head><body><div id="stage">
+<canvas id="cv" width="1080" height="1920"></canvas><div id="black"></div>
+
+<!-- A: domenica sera, 19:34 -->
+<div class="L" id="a0" style="left:84px;top:930px"><span class="mono" style="font-size:28px;color:#e8c9a0">23.11.1980 · audio originale</span></div>
+<div class="L" id="a1" style="left:78px;top:990px;font-family:'JetBrains Mono';font-weight:700;font-size:200px;letter-spacing:-.04em;line-height:1"><span id="hm">19:33</span><span id="ss" style="font-size:78px;color:#ffd43b;margin-left:10px">:56</span></div>
+<div class="L disp" id="a2" style="left:84px;top:1220px;font-size:100px">un minuto.</div>
+<div class="L" id="a4" style="left:84px;top:1215px"><div class="disp" style="font-size:80px;line-height:.98">Una radio sta<br>registrando.</div><div style="font-size:46px;font-weight:600;color:#ffd43b;margin-top:22px">🔊 Alza il volume.</div></div>
+<div class="L disp" id="a3" style="left:84px;top:1000px;font-size:92px;line-height:1">L'Italia<br><span style="color:#ff8a1f">non era<br>pronta.</span></div>
+
+<!-- B: la mappa -->
+<div class="L" id="b0" style="left:84px;top:300px"><span class="mono" style="font-size:28px;color:#ffd43b">23.11.1980 · ore 19:34</span></div>
+<div class="L disp" id="b1" style="left:84px;top:352px;font-size:84px">Irpinia e<br>Basilicata</div>
+<div class="L" id="b2" style="left:84px;top:1250px;font-size:56px;font-weight:600">Magnitudo <b style="font-family:Unbounded;color:#ff8a1f">6.9</b></div>
+<div class="L mono" id="b3" style="left:84px;top:1330px;font-size:22px;color:#a2a6dc">fonte: INGV</div>
+
+<!-- C: le vittime, una luce per ognuna -->
+<div class="L disp" id="c1" style="left:84px;top:1040px;font-size:150px">2.734</div>
+<div class="L disp" id="c2" style="left:84px;top:1190px;font-size:66px;color:#e8c9a0">vittime.</div>
+<div class="L" id="c3" style="left:84px;top:1040px;font-size:52px;font-weight:600;line-height:1.3;color:#d9dbf7">8.848 feriti.<br>Oltre 400.000<br>sfollati.<div class="mono" style="font-size:22px;color:#a2a6dc;margin-top:30px">fonte: Dipartimento della Protezione Civile</div></div>
+
+<!-- D/E: soccorsi senza guida, poi coordinati -->
+<div class="L disp" id="d1" style="left:84px;top:300px;font-size:84px">I soccorsi<br>arrivano.</div>
+<div class="L disp" id="d2" style="left:84px;top:1160px;font-size:108px;color:#ff4d5e">Nessuno</div>
+<div class="L disp" id="d3" style="left:84px;top:1270px;font-size:80px">li coordina.</div>
+<div class="L" id="e0" style="left:84px;top:300px"><span class="mono" style="font-size:28px;color:#ffd43b">dopo tre giorni di confusione</span><div style="font-size:54px;font-weight:600;margin-top:18px">arriva un commissario:</div></div>
+<div class="L disp" id="e1" style="left:84px;top:1160px;font-size:84px;color:#5dea84;line-height:.98">Giuseppe<br>Zamberletti.</div>
+
+<!-- F: nasce il sistema -->
+<div class="L" id="f0" style="left:84px;right:230px;top:430px"><div class="disp" style="font-size:72px;line-height:1">Da lì nasce la<br><span style="color:#5dea84">protezione<br>civile.</span></div>
+<div style="margin-top:50px"><div class="row" id="f1"><span class="n">1982</span><span class="t">il Dipartimento</span></div>
+<div class="row" id="f2"><span class="n">1992</span><span class="t">il Servizio nazionale</span></div>
+<div class="row" id="f3" style="border-bottom:2px solid #36337a"><span class="n">oggi</span><span class="t">i volontari sono<br>dentro il sistema</span></div></div></div>
+
+<!-- G: tu -->
+<div class="L disp" id="g1" style="left:84px;top:292px;font-size:54px;line-height:1.02">Il sistema c'è.<br><span style="color:#5dea84">Il primo anello<br>sei tu.</span></div>
+<div id="phone"><div class="scr" id="scr">
+<img id="p0" src="irpinia-ph/00.png"><img id="p1" src="irpinia-ph/01.png"><img id="p2" src="irpinia-ph/02.png"><img id="p3" src="irpinia-ph/03.png"><img id="p4" src="irpinia-ph/04.png"><img id="p5" src="irpinia-ph/05.png"><img id="p6" src="irpinia-ph/10.png"><div id="hl"></div></div></div>
+
+<!-- H: la luce si riaccende -->
+<div class="L" id="h0" style="left:84px;right:230px;top:930px">
+<div class="disp" style="font-size:70px;line-height:1">Sai dov'è<br><span style="color:#5dea84">l'area di attesa</span><br>del tuo Comune?</div>
+<div style="font-size:46px;font-weight:600;margin-top:34px">Cercala stasera.<br><span style="color:#a2a6dc">Mandalo a chi vive con te.</span></div></div>
+<div class="L" id="h1" style="left:84px;top:1460px;display:flex;align-items:center;gap:22px"><span class="mono" style="font-size:20px;color:#a2a6dc">una rubrica di</span><img src="pittogramma-fs.svg" style="height:64px"><span class="disp" style="font-size:32px;line-height:1">Formazione<br>e Sicurezza</span></div>
+
+<div class="top" id="top"><span style="display:flex;align-items:center;gap:14px"><svg width="52" height="48" viewBox="0 0 260 240" style="flex:none"><path d="M44 92 A90 90 0 0 1 186 46" fill="none" stroke="#5dea84" stroke-width="18" stroke-linecap="round"/><path d="M216 148 A90 90 0 0 1 74 194" fill="none" stroke="#2c42de" stroke-width="18" stroke-linecap="round"/><path d="M24 120 H70 L90 88 L108 62 L124 176 L144 96 L160 126 L172 120 H236" fill="none" stroke="#f1f2ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="marchio">SAFE <b>&amp;</b> SOUND</span></span><span class="mono">Accadde oggi · 23.11</span></div>
+</div>
+<div id="vig"></div><div id="grain"></div>
+<script src="italia.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+function win(t,a,b,fi=.3,fo=.3){if(t<a||t>b)return 0;return Math.min(cl((t-a)/fi),cl((b-t)/fo));}
+// entrata cinematografica: sale, mette a fuoco
+function fx(id,t,a,b,{dy=40,dur=.7,blur=14,fo=.35}={}){const el=$(id);const p=eo((t-a)/dur);const o=win(t,a,b,dur*.8,fo);el.style.opacity=o;el.style.transform=`translateY(${dy*(1-p)}px)`;el.style.filter=p<1?`blur(${blur*(1-p)}px)`:'none';return o;}
+// ---- scaletta (secondi): da riallineare all'audio ----
+const S={A:0,QUAKE:1.6,FULL:7.0,DARK:8.6,A3:8.9,B:10.6,C:15.2,C3:18.0,D:20.0,E:23.6,F:27.2,G:31.0,H:37.6,END:42};
+const ctx=$('cv').getContext('2d');
+// sismicità della scossa
+// sincronizzata con la registrazione: primo sobbalzo, la musica che si deforma, poi la scossa piena
+function amp(t){if(t<S.QUAKE||t>S.DARK+.1)return 0;const j=.55*Math.exp(-(t-S.QUAKE)/.35);const r=t<3?0:.2+.8*eio((t-3)/(S.FULL-3));return Math.min(1,j+r);}
+function nz(x){return Math.sin(x*1.7)+.6*Math.sin(x*3.9+1.3)+.35*Math.sin(x*9.1+.4)+.2*Math.sin(x*17.3+2.1);}
+// lampadina: accesa, trema, si spegne al buio, si riaccende alla fine
+function lampada(t,on){
+ const A=amp(t), sw=Math.sin(t*5.1)*A*0.42+Math.sin(t*2.3)*0.015;
+ const px=540,py=0,L=640; const bx=px+Math.sin(sw)*L, by=py+Math.cos(sw)*L;
+ let fl=1; if(t>S.QUAKE&&t<S.DARK){const k=amp(t);fl=(Math.sin(t*83)+Math.sin(t*37)*.5>1.4-1.6*k?.2:1)*(1-k*.45);} if(t>=S.DARK&&t<S.H) fl=0;
+ if(t>=S.H) fl=eo((t-S.H-.3)/.5)*(t<S.H+.6?(Math.sin(t*90)>0?1:.3):1);
+ fl*=on;
+ // alone caldo
+ if(fl>0){const g=ctx.createRadialGradient(bx,by+40,10,bx,by+40,900);g.addColorStop(0,`rgba(255,214,150,${.55*fl})`);g.addColorStop(.25,`rgba(255,170,90,${.18*fl})`);g.addColorStop(1,'rgba(255,150,80,0)');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1920);
+  // pavimento illuminato
+  const f=ctx.createRadialGradient(bx,1500,20,bx,1500,700);f.addColorStop(0,`rgba(255,200,140,${.16*fl})`);f.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=f;ctx.fillRect(0,1100,1080,820);}
+ ctx.globalAlpha=on;
+ ctx.strokeStyle='#2a2766';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(bx,by-40);ctx.stroke();
+ ctx.save();ctx.translate(bx,by);ctx.rotate(-sw);
+ ctx.fillStyle='#1a1760';ctx.fillRect(-26,-62,52,34);
+ ctx.beginPath();ctx.arc(0,12,46,0,7);ctx.fillStyle=fl>0?`rgba(255,${200+40*fl},${150+60*fl},${.25+.75*fl})`:'#14123f';ctx.fill();
+ if(fl>0){ctx.beginPath();ctx.arc(0,12,22,0,7);ctx.fillStyle=`rgba(255,250,235,${fl})`;ctx.fill();}
+ ctx.restore();ctx.globalAlpha=1;
+}
+// mappa
+const I=window.ITALIA, path=new Path2D(I.d);
+const MP=(la,lo)=>[(lo-I.L0)*I.k*I.sx,(I.B1-la)*I.sx];
+const EPI=MP(40.78,15.31);
+const CITTA=[["Napoli",40.85,14.27],["Avellino",40.91,14.79],["Salerno",40.68,14.77],["Potenza",40.64,15.80]];
+function mappaView(t){ // zoom verso l'epicentro durante B, resta largo in D/E
+ const z=eio((t-S.B-.6)/2.4)*(t<S.D?1:Math.max(0,1-(t-S.D)/1.2)*1+0); const s=1+2.2*z;
+ const cx=540, cy=820; const ox=90+(cx-90-EPI[0]*s+0)*z*0+0;
+ // trasformazione: a z=0 mappa intera a (90,420); a z=1 epicentro centrato in (cx,cy)
+ const x0=90*(1-z)+(cx-EPI[0]*s)*z, y0=420*(1-z)+(cy-EPI[1]*s)*z; return {s,x0,y0};}
+function mappa(t,alpha){
+ if(alpha<=0)return; const v=mappaView(t);
+ ctx.save();ctx.globalAlpha=alpha;ctx.translate(v.x0,v.y0);ctx.scale(v.s,v.s);
+ ctx.fillStyle='#0b0745';ctx.strokeStyle='#36337a';ctx.lineWidth=2.5/v.s;ctx.fill(path);ctx.stroke(path);
+ ctx.restore();
+ const ex=v.x0+EPI[0]*v.s, ey=v.y0+EPI[1]*v.s;
+ // onde sismiche
+ if(t>S.B&&t<S.C+.5){for(let k=0;k<6;k++){const age=((t-S.B-.8)-k*.55);if(age<0)continue;const r=age*260;const a=Math.max(0,1-age/2.6)*alpha;if(a<=0)continue;ctx.strokeStyle=`rgba(255,138,31,${a})`;ctx.lineWidth=5;ctx.beginPath();ctx.arc(ex,ey,r,0,7);ctx.stroke();}
+  // città
+  ctx.font='600 30px "JetBrains Mono"';
+  for(const [n,la,lo] of CITTA){const p=MP(la,lo);const x=v.x0+p[0]*v.s,y=v.y0+p[1]*v.s;const d=Math.hypot(x-ex,y-ey);const hit=cl(((t-S.B-.8)*260-d)/80);if(hit<=0)continue;ctx.globalAlpha=alpha*hit;ctx.fillStyle='#f1f2ff';ctx.beginPath();ctx.arc(x,y,7,0,7);ctx.fill();ctx.fillText(n.toUpperCase(),x+16,y+9);ctx.globalAlpha=1;}
+  // epicentro
+  ctx.globalAlpha=alpha;ctx.fillStyle='#ff4d5e';ctx.beginPath();ctx.arc(ex,ey,12+4*Math.sin(t*8),0,7);ctx.fill();ctx.globalAlpha=1;}
+ return {ex,ey,v};
+}
+// 2.734 luci
+const NV=2734, COLS=58, GAP=13.2, GX=84+6, GY=300; const ord=[];{let s=1980;for(let i=0;i<NV;i++)ord.push(i);for(let i=NV-1;i>0;i--){s=(s*16807)%2147483647;const j=s%(i+1);[ord[i],ord[j]]=[ord[j],ord[i]];}}
+const rank=new Array(NV);ord.forEach((v,i)=>rank[v]=i);
+function luci(t,alpha){if(alpha<=0)return;const f=eo((t-S.C-.2)/2.6);const n=f*NV;
+ for(let i=0;i<NV;i++){if(rank[i]>n)continue;const x=GX+(i%COLS)*GAP,y=GY+Math.floor(i/COLS)*GAP;const tw=.75+.25*Math.sin(t*2+i*1.7);ctx.globalAlpha=alpha*tw;ctx.fillStyle='#ffe2b8';ctx.fillRect(x-2.2,y-2.2,4.4,4.4);}ctx.globalAlpha=1;}
+// soccorsi: prima caos, poi colonne ordinate verso l'epicentro
+const NS=90;
+function soccorsi(t,alpha,ex,ey){if(alpha<=0)return;const k=eio((t-S.E-.4)/1.8);
+ for(let i=0;i<NS;i++){const a=i*2.399, r0=380+ (i%7)*40;
+  const cxp=540+Math.cos(a)*r0*0.9+Math.sin(t*(.7+(i%5)*.23)+i)*120, cyp=830+Math.sin(a)*r0*0.75+Math.cos(t*(.6+(i%3)*.31)+i*1.3)*120;
+  const lane=i%6, pos=Math.floor(i/6)/15; const sx=120+lane*30, sy=520+lane*22; const ph=((pos+t*.12)%1);
+  const ox=sx+(ex-sx)*ph, oy=sy+(ey-sy)*ph; // colonne che convergono
+  const x=cxp*(1-k)+ox*k, y=cyp*(1-k)+oy*k;
+  const c=k<.5?'#ff4d5e':'#5dea84';ctx.globalAlpha=alpha*(.55+.45*Math.sin(t*3+i));ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,6,0,7);ctx.fill();}
+ ctx.globalAlpha=1;}
+window.draw=function(t){
+ ctx.clearRect(0,0,1080,1920);
+ // sfondo notte
+ const bg=ctx.createRadialGradient(540,2100,100,540,1900,1500);bg.addColorStop(0,'#2c42de');bg.addColorStop(.45,'#060039');bg.addColorStop(1,'#03001c');ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1920);
+ const lampOn=win(t,-1,S.B+.2,.01,.4)+win(t,S.H-.2,99,.3,.01);
+ lampada(t,cl(lampOn));
+ const mA=win(t,S.B,S.C+.2,.6,.4), mD=win(t,S.D,S.F+.1,.6,.5)*.75;
+ const m=mappa(t,Math.max(mA,mD));
+ luci(t,win(t,S.C,S.D+.1,.3,.6));
+ if(m) soccorsi(t,win(t,S.D+.4,S.F,.6,.5),m.ex,m.ey);
+ // tremore
+ const A=amp(t), sh=A*18; $('stage').style.transform=`translate(${Math.sin(t*61)*sh}px,${Math.cos(t*47)*sh*.6}px) rotate(${Math.sin(t*37)*A*.4}deg)`;
+ $('black').style.opacity=win(t,S.DARK-.05,S.B+.1,.08,.6)*.85;
+ // orologio
+ const secs=t<S.QUAKE?58+Math.floor(t/S.QUAKE*2):Math.min(59,Math.floor(cl((t-S.QUAKE)/(S.DARK-S.QUAKE))*60));
+ $('hm').textContent=t<S.QUAKE?'19:33':'19:34'; $('ss').textContent=':'+String(t<S.QUAKE?Math.min(59,secs):secs).padStart(2,'0');
+ $('a0').style.opacity=win(t,-1,S.DARK,.01,.15);$('a1').style.opacity=win(t,-1,S.DARK,.01,.15);
+ $('a2').style.opacity=0;fx('a2',t,4.2,S.DARK,{dur:.5,fo:.12});$('a4').style.opacity=win(t,-1,4.0,.01,.3);
+ fx('a3',t,S.A3,S.B,{dur:.9,blur:18});
+ fx('b0',t,S.B+.4,S.C);fx('b1',t,S.B+.6,S.C);fx('b2',t,S.B+2.6,S.C);fx('b3',t,S.B+3.0,S.C);
+ fx('c1',t,S.C+1.4,S.C3,{dur:1.1,blur:20});fx('c2',t,S.C+2.0,S.C3,{dur:1});fx('c3',t,S.C3,S.D,{dur:.8});
+ fx('d1',t,S.D+.3,S.E);fx('d2',t,S.D+1.6,S.E,{dy:0,dur:.4});fx('d3',t,S.D+2.0,S.E);
+ fx('e0',t,S.E+.2,S.F);fx('e1',t,S.E+1.2,S.F,{dur:.8});
+ fx('f0',t,S.F,S.G);['f1','f2','f3'].forEach((id,i)=>{const p=eo((t-S.F-.7-i*.55)/.5);$(id).style.opacity=p;$(id).style.transform=`translateX(${-60*(1-p)}px)`;});
+ // telefono
+ const ph=win(t,S.G,S.H,.4,.4); fx('g1',t,S.G,S.H);
+ $('phone').style.opacity=ph; const pp=eo((t-S.G)/.7); $('phone').style.transform=`translateY(${140*(1-pp)}px)`;
+ const g=S.G; const seq=[[0,g],[1,g+1.1],[2,g+1.35],[3,g+1.6],[4,g+1.85],[5,g+2.1],[6,g+3.0]];
+ let cur=0;for(const [i,a] of seq) if(t>=a) cur=i; for(let i=0;i<=6;i++) $('p'+i).style.opacity=(i===cur?1:0);
+ const z=eo((t-g-4.0)/1.1); $('scr').style.transform=`translate(${-4*z}px,${-395*z}px) scale(${1+0.15*z})`;
+ $('hl').style.opacity=cl((t-g-4.8)/.3)*(0.75+0.25*Math.sin(t*9));
+ fx('h0',t,S.H+.6,99,{dur:.9});fx('h1',t,S.H+1.6,99);
+ $('top').style.opacity=1-win(t,S.DARK,S.B+.3,.1,.3);
+ // grana
+ const r=Math.floor(t*30)*7919; $('grain').style.transform=`translate(${(r%251)-125}px,${((r/251|0)%251)-125}px)`;
+};
+draw(0);
+</script></body></html>
